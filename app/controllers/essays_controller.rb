@@ -1,7 +1,7 @@
 class EssaysController < ApplicationController
   before_action :set_essay, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
+  before_action :authenticate_admin, only: [:new, :edit, :update, :destroy]
   # GET /essays
   # GET /essays.json
   def index
@@ -66,6 +66,10 @@ class EssaysController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_essay
       @essay = Essay.find(params[:id])
+    end
+
+    def authenticate_admin
+      redirect_to root_path unless current_user && current_user.admin?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
