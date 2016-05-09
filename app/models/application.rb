@@ -4,7 +4,8 @@ class Application < ActiveRecord::Base
   has_many :essays
   has_many :test_scores
   has_many :extracurriculars
-  has_many :prompts, through: :essays, source: :prompt
-  has_many :schools, through: :prompts, source: :school
-  has_and_belongs_to_many :schools
+  has_many :completed_prompts, through: :essays, source: :prompt
+  has_many :admits
+  has_many :schools, through: :admits, source: :school
+  has_many :prompts, through: :schools #might be incorrect?
 end
