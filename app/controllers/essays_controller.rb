@@ -1,5 +1,6 @@
 class EssaysController < ApplicationController
   before_action :set_essay, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /essays
   # GET /essays.json

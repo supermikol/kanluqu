@@ -2,23 +2,21 @@
   <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header">
     &#9776;
   </button>
-  <a class="navbar-brand" href="#">
-    <%= image_tag "logo.gif" %>
-  </a>
+  <%= link_to(image_tag("logo.gif"), root_path, class: 'navbar-brand') %>
   <div class="collapse navbar-toggleable-xs" id="navbar-header">
     <ul class="nav navbar-nav pull-xs-right">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to "Profile(#{current_user.full_name})", edit_user_registration_path, class: 'nav-link' %>
+<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
+      <% else %>
+        <li><%= link_to 'Log In', new_user_session_path, class: 'nav-link' %></li>
+      <% end %>
+
     </ul>
   </div>
 </nav> <!-- /navbar -->
