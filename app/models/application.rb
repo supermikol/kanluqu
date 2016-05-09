@@ -6,4 +6,5 @@ class Application < ActiveRecord::Base
   has_many :extracurriculars
   has_many :prompts, through: :essays, source: :prompt
   has_many :schools, through: :prompts, source: :school
+  has_and_belongs_to_many :schools
 end
