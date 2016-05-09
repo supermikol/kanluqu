@@ -1,0 +1,22 @@
+<nav class="navbar navbar-light">
+  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header">
+    &#9776;
+  </button>
+  <%= link_to(image_tag("logo.gif"), root_path, class: 'navbar-brand') %>
+  <div class="collapse navbar-toggleable-xs" id="navbar-header">
+    <ul class="nav navbar-nav pull-xs-right">
+      <% if user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to "Profile(#{current_user.full_name})", edit_user_registration_path, class: 'nav-link' %>
+<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+      </li>
+      <% else %>
+        <li><%= link_to 'Log In', new_user_session_path, class: 'nav-link' %></li>
+      <% end %>
+
+    </ul>
+  </div>
+</nav> <!-- /navbar -->
