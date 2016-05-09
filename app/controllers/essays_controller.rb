@@ -1,7 +1,7 @@
 class EssaysController < ApplicationController
   before_action :set_essay, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :authenticate_admin, only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_admin, except: [:show, :index]
   # GET /essays
   # GET /essays.json
   def index

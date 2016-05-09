@@ -1,5 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_admin, except: [:show, :index]
 
   # GET /applications
   # GET /applications.json
@@ -70,5 +71,9 @@ class ApplicationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
       params[:application]
+    end
+
+    def authenticate_admin
+      redirect_to root_path unless current_user && current_user.admin?
     end
 end
