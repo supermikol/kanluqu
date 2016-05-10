@@ -7,10 +7,15 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #Create Admin
-admin = User.create(full_name: "Mike Admin", email: "mdu123@gmail.com", password: "123456", password_confirmation: "123456", admin: true)
+admin = User.new(full_name: "Mike Admin", email: "mdu123@gmail.com", password: "123456", password_confirmation: "123456", admin: true)
+admin.skip_confirmation!
+admin.save!
 
 #Create Simple User
-user = User.create(full_name: "Mike User", email: "gummibare@gmail.com", password: "123456", password_confirmation: "123456", admin: true)
+user = User.new(full_name: "Mike User", email: "gummibare@gmail.com", password: "123456", password_confirmation: "123456", admin: true)
+user.skip_confirmation!
+user.save!
+
 
 #Create Applications
 app = Application.create(user_id: 1, student_name: "Joey", major: "Biology", location: "Shanghai", gender: "M", year: 2016, study_abroad: false)

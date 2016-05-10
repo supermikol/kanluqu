@@ -1,5 +1,7 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authenticate_admin, except: [:show, :index]
 
   # GET /applications
   # GET /applications.json
@@ -71,4 +73,5 @@ class ApplicationsController < ApplicationController
     def application_params
       params[:application]
     end
+
 end
