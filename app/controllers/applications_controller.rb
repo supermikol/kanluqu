@@ -1,5 +1,6 @@
 class ApplicationsController < ApplicationController
   before_action :set_application, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   before_action :authenticate_admin, except: [:show, :index]
 
   # GET /applications
@@ -74,6 +75,7 @@ class ApplicationsController < ApplicationController
     end
 
     def authenticate_admin
-      redirect_to root_path unless current_user && current_user.admin?
+      puts "hitting verification"
+      redirect_to(root_path, notice: 'You are not authorized to view the page.') unless current_user && current_user.admin?
     end
 end

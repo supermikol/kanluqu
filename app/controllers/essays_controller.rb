@@ -69,7 +69,7 @@ class EssaysController < ApplicationController
     end
 
     def authenticate_admin
-      redirect_to root_path unless current_user && current_user.admin?
+      redirect_to(root_path, notice: 'Sorry, you are not authorized to view the page.') unless current_user && current_user.admin?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
