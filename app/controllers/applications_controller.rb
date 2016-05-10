@@ -71,7 +71,7 @@ class ApplicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def application_params
-      params.require(:application).permit(:name, :major, :student_name, :location, :gender, :year, :study_abroad, test_scores_attributes: [:category, :subject, :score, :date], extracurriculars_attributes: [:name, :category, :position, :start_date, :end_date])
+      params.require(:application).permit(:_destroy, :name, :major, :student_name, :location, :gender, :year, :study_abroad, test_scores_attributes: [:id, :_destroy, :category, :subject, :score, :date], extracurriculars_attributes: [:id, :_destroy, :name, :category, :position, :start_date, :end_date], admits_attributes: [:id, :_destroy, :school_id, :admitted])
     end
 
 end

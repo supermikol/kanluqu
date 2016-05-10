@@ -3,7 +3,7 @@ class School < ActiveRecord::Base
   has_many :prompts
   has_many :essays, through: :prompts
   has_many :admits
-  has_many :schools, through: :admits, source: :application
+  has_many :applications, through: :admits
 
   accepts_nested_attributes_for :rankings, :prompts,
     :allow_destroy => true,
