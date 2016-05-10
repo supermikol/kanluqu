@@ -68,10 +68,6 @@ class SchoolsController < ApplicationController
       @school = School.find(params[:id])
     end
 
-    def authenticate_admin
-      redirect_to(root_path, notice: 'Sorry, you are not authorized to view the page.') unless current_user && current_user.admin?
-    end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def school_params
       params.require(:school).permit(:name, :country, rankings_attributes: [:rank,:year], prompts_attributes: [:content, :year])

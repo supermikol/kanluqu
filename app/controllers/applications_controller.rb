@@ -74,8 +74,4 @@ class ApplicationsController < ApplicationController
       params[:application]
     end
 
-    def authenticate_admin
-      puts "hitting verification"
-      redirect_to(root_path, notice: 'You are not authorized to view the page.') unless current_user && current_user.admin?
-    end
 end
