@@ -8,4 +8,12 @@ module FormHelper
 
     school
   end
+
+  def setup_application(application)
+    4.times do
+      application.test_scores.build
+      application.extracurriculars.build
+    end
+    application
+  end
 end

@@ -1,4 +1,4 @@
-<%= form_for(@application) do |f| %>
+<%= form_for(setup_application(@application)) do |f| %>
   <% if @application.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@application.errors.count, "error") %> prohibited this application from being saved:</h2>
@@ -10,6 +10,79 @@
       </ul>
     </div>
   <% end %>
+
+  <div>
+    <%= f.label :student_name %>
+    <%= f.text_field :student_name %>
+  </div>
+  <div>
+    <%= f.label :major %>
+    <%= f.text_field :major %>
+  </div>
+  <div>
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+  <div>
+    <%= f.label :gender %>
+    <%= f.text_field :gender %>
+  </div>
+  <div>
+    <%= f.label :year %>
+    <%= f.text_field :year %>
+  </div>
+  <div>
+    <%= f.label :study_abroad %>
+    <%= f.text_field :study_abroad %>
+  </div>
+
+  <h2>Test Scores</h2>
+  <%= f.fields_for :test_scores do |ff| %>
+    <div>
+      <%= ff.label :category %>
+      <%= ff.text_field :category %>
+
+      <%= ff.label :subject %>
+      <%= ff.text_field :subject %>
+
+      <%= ff.label :score %>
+      <%= ff.text_field :score %>
+
+      <%= ff.label :date %>
+      <%= ff.text_field :date %>
+
+      <% if ff.object.persisted? %>
+        <%= ff.check_box :_destroy %>
+        <%= ff.label :_destroy, "Destroy" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h2>Extracurriculars</h2>
+  <%= f.fields_for :extracurriculars do |ff| %>
+    <div>
+      <%= ff.label :name %>
+      <%= ff.text_field :name %>
+
+      <%= ff.label :category %>
+      <%= ff.text_field :category %>
+
+      <%= ff.label :position %>
+      <%= ff.text_field :position %>
+
+      <%= ff.label :start_date %>
+      <%= ff.text_field :start_date %>
+
+      <%= ff.label :end_date %>
+      <%= ff.text_field :end_date %>
+
+      <% if ff.object.persisted? %>
+        <%= ff.check_box :_destroy %>
+        <%= ff.label :_destroy, "Destroy" %>
+      <% end %>
+    </div>
+  <% end %>
+
 
   <div class="actions">
     <%= f.submit %>
