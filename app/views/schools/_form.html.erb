@@ -1,0 +1,60 @@
+<%= form_for(setup_school(@school)) do |f| %>
+  <% if @school.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h2>
+
+      <ul>
+      <% @school.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :country %>
+    <%= f.text_field :country %>
+  </div>
+
+
+  <h2>Rankings</h2>
+  <%= f.fields_for :rankings do |ff| %>
+    <div>
+      <%= ff.label :rank %>
+      <%= ff.text_field :rank %>
+
+      <%= ff.label :year %>
+      <%= ff.text_field :year %>
+
+      <% if ff.object.persisted? %>
+        <%= ff.check_box :_destroy %>
+        <%= ff.label :_destroy, "Destroy" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h2>Essay Prompts</h2>
+  <%= f.fields_for :prompts do |ff| %>
+    <div>
+      <%= ff.label :content %>
+      <%= ff.text_field :content %>
+
+      <%= ff.label :year %>
+      <%= ff.text_field :year %>
+
+      <% if ff.object.persisted? %>
+        <%= ff.check_box :_destroy %>
+        <%= ff.label :_destroy, "Destroy" %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 class SchoolsController < ApplicationController
-  before_action :set_essay, only: [:show, :edit, :update, :destroy]
+  before_action :set_school, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :authenticate_admin, except: [:show, :index]
   # GET /schools
@@ -25,7 +25,7 @@ class SchoolsController < ApplicationController
   # POST /schools
   # POST /schools.json
   def create
-    @school = School.new(essay_params)
+    @school = School.new(school_params)
 
     respond_to do |format|
       if @school.save
@@ -42,7 +42,7 @@ class SchoolsController < ApplicationController
   # PATCH/PUT /schools/1.json
   def update
     respond_to do |format|
-      if @school.update(essay_params)
+      if @school.update(school_params)
         format.html { redirect_to @school, notice: 'School was successfully updated.' }
         format.json { render :show, status: :ok, location: @school }
       else
@@ -64,7 +64,7 @@ class SchoolsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_essay
+    def set_school
       @school = School.find(params[:id])
     end
 
@@ -73,7 +73,7 @@ class SchoolsController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def essay_params
-      params[:school]
+    def school_params
+      params.require(:school).permit(:name, :country, rankings_attributes: [:rank,:year], prompts_attributes: [:content, :year])
     end
 end
