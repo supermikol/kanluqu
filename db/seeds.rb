@@ -34,7 +34,7 @@ Essay.create([{application_id: 1, prompt_id: 1, category: "Main Essay", title: "
 TestScore.create([{application_id: 1, category: "AP", subject: "Calculus AB", score: 5, date: "05/15/2016"},{application_id: 1, category: "SAT", subject: "Math", score: 700, date: "05/01/2016"},{application_id: 2, category: "AP", subject: "Physics", score: 5, date: "05/10/2016"}])
 
 #Create Extracurriculars
-Extracurricular.create(application_id: 1, name: "Global Leadership Program", category: "Summer Camp", position: "participant", start_date: "05/01/2015", end_date: "05/30/2015")
+Extracurricular.create(application_id: 1, name: "Global Leadership Program", category: "Summer Camp", position: "participant", description: "this was a pretty good summer camp", start_date: "05/01/2015", end_date: "05/30/2015")
 
 #Create Rankings
 Ranking.create([{school_id: 1, rank: 1, year: 2016},{school_id: 2, rank: 3, year: 2016},{school_id: 3, rank: 2, year: 2016}])
