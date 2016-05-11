@@ -1,11 +1,11 @@
 class Application < ActiveRecord::Base
-  has_many :favorites, as: :favoritable
+  has_many :favorites, as: :favoritable, dependent: :destroy
   belongs_to :user
-  has_many :essays
-  has_many :test_scores
-  has_many :extracurriculars
+  has_many :essays, dependent: :destroy
+  has_many :test_scores, dependent: :destroy
+  has_many :extracurriculars, dependent: :destroy
   has_many :completed_prompts, through: :essays, source: :prompt
-  has_many :admits
+  has_many :admits, dependent: :destroy
   has_many :schools, through: :admits
   has_many :prompts, through: :schools
 

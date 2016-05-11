@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :applications
   has_many :favorite_applications, through: :favorites, source: :favoritable, source_type: 'Application'
   has_many :favorite_essays, through: :favorites, source: :favoritable, source_type: 'Essay'
