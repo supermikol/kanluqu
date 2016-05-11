@@ -3,4 +3,4 @@
 <%= render 'form' %>
 
 <%= link_to 'Show', @essay %> |
-<%= link_to 'Back', essays_path %>
+<%= link_to 'Back', application_essays_path(@essay.application) %>

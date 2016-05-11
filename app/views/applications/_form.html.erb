@@ -12,7 +12,7 @@
   <% end %>
 
   <div>
-    <%= f.label :student_name %>
+    <%= f.label :student_name, "Student Name" %>
     <%= f.text_field :student_name %>
   </div>
   <div>
@@ -32,7 +32,7 @@
     <%= f.text_field :year %>
   </div>
   <div>
-    <%= f.label :study_abroad %>
+    <%= f.label :study_abroad, "Study Abroad?" %>
     <%= f.text_field :study_abroad %>
   </div>
 
@@ -70,6 +70,9 @@
       <%= ff.label :position %>
       <%= ff.text_field :position %>
 
+      <%= ff.label :description %>
+      <%= ff.text_field :description %>
+
       <%= ff.label :start_date %>
       <%= ff.text_field :start_date %>
 
@@ -80,6 +83,19 @@
         <%= ff.check_box :_destroy %>
         <%= ff.label :_destroy, "Destroy" %>
       <% end %>
+    </div>
+  <% end %>
+
+  <h2>Schools</h2>
+  <%= f.fields_for :admits do |ff| %>
+    <div>
+      <%= ff.check_box :_destroy,
+            {:checked => ff.object.persisted?},
+            '0', '1'
+      %>
+      <%= ff.label :_destroy, ff.object.school.name %>
+
+      <%= ff.hidden_field :school_id %>
     </div>
   <% end %>
 

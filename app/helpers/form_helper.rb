@@ -14,6 +14,10 @@ module FormHelper
       application.test_scores.build
       application.extracurriculars.build
     end
+    (School.all - application.schools).each do |school|
+      application.admits.build(:school => school)
+    end
+    # application.admits.sort_by {|x| x.school.name }
     application
   end
 end
