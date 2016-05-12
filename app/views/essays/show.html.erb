@@ -7,5 +7,7 @@ Author:<%= @essay.application.student_name %>
 <% end %>
 <p>Essay Type: <%= @essay.category %></p>
 <p><%= @essay.content %></p>
-<%= link_to 'Edit', edit_essay_path(@essay) %> |
+<% if current_user.admin? %>
+<%= link_to 'Edit', edit_essay_path(@essay) %>
+<% end %>
 <%= link_to "Return to #{@essay.application.student_name}'s Application", application_path(@essay.application) %>

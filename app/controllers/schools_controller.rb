@@ -5,12 +5,15 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.all
+    @schools = School.all.order("name")
   end
 
   # GET /schools/1
   # GET /schools/1.json
   def show
+    @prompts = @school.prompts.order("year DESC")
+    @rankings = @school.rankings.order("year DESC")
+    @applications = @school.applications.order("year DESC")
   end
 
   # GET /schools/new

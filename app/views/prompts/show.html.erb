@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<p>Prompt: <%=@prompt.content%></p>
+<p>School: <%=@prompt.school.name%></p>
+
+<h4>Essays</h4>
+<table>
+  <tr>
+    <th>Student</th>
+    <th>Essay</th>
+  </tr>
+  <% @essays.each do |essay| %>
+    <tr>
+      <td><%= link_to essay.application.student_name, application_path(essay.application) %></td>
+      <td><%= link_to essay.title, essay_path(essay) %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to "Return to #{@prompt.school.name}", school_path(@prompt.school) %>
