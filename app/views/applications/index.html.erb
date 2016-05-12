@@ -10,42 +10,38 @@
     <% end %>
       <% @applications.in_groups_of(3) do |app1, app2, app3| %>
         <div class="row">
-          <div class="col-md-4">
-            <h4><%= link_to "#{app1.student_name}, #{app1.location}, #{app1.year}", app1 %></h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p>
-            <% if current_user.admin? %>
-            <%= link_to 'Add Essay', new_application_essay_path(app1), {class: "btn btn-secondary", role: "button"} %>
-            <%= link_to 'Edit', edit_application_path(app1), {class: "btn btn-secondary", role: "button"} %>
-            <%= link_to 'Destroy', app1, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary", role: "button"} %>
-            <% end %>
-            </p>
-          </div>
+          <!-- <div class="col-md-4"> -->
+            <div class="card card-block">
+              <div class="card-title"><%= link_to "#{app1.student_name}#{app1.zone ? '(' + app1.zone + ')' : ''}, #{app1.location}, #{app1.year}", app1 %></div>
+              <p class="card-text">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <% if current_user.admin? %>
+              <%= link_to 'Add Essay', new_application_essay_path(app1), {class: "btn btn-secondary", role: "button"} %>
+              <%= link_to 'Edit', edit_application_path(app1), {class: "btn btn-secondary", role: "button"} %>
+              <%= link_to 'Destroy', app1, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary", role: "button"} %>
+              <% end %>
+            </div>
+          <!-- </div> -->
           <% if app2 %>
-          <div class="col-md-4">
-            <h4><%= link_to "#{app2.student_name}, #{app2.location}, #{app2.year}", app2 %></h4>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p>
-            <% if current_user.admin? %>
-            <%= link_to 'Add Essay', new_application_essay_path(app2), {class: "btn btn-secondary", role: "button"} %>
-            <%= link_to 'Edit', edit_application_path(app2), {class: "btn btn-secondary", role: "button"} %>
-            <%= link_to 'Destroy', app2, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary", role: "button"} %>
-            <% end %>
-            </p>
-         </div>
+          <div class="card card-block">
+              <div class="card-title"><%= link_to "#{app2.student_name}#{app2.zone ? '(' + app2.zone + ')' : ''}, #{app2.location}, #{app2.year}", app2 %></div>
+              <p class="card-text">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <% if current_user.admin? %>
+              <%= link_to 'Add Essay', new_application_essay_path(app2), {class: "btn btn-secondary", role: "button"} %>
+              <%= link_to 'Edit', edit_application_path(app2), {class: "btn btn-secondary", role: "button"} %>
+              <%= link_to 'Destroy', app2, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary", role: "button"} %>
+              <% end %>
+            </div>
          <% end %>
          <% if app3 %>
-         <div class="col-md-4">
-            <h4><%= link_to "#{app3.student_name}, #{app3.location}, #{app3.year}", app3 %></h4>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-           <p>
-            <% if current_user.admin? %>
-            <%= link_to 'Add Essay', new_application_essay_path(app3), {class: "btn btn-secondary", role: "button"} %>
-            <%= link_to 'Edit', edit_application_path(app3), {class: "btn btn-secondary", role: "button"} %>
-            <%= link_to 'Destroy', app3, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary", role: "button"} %>
-            <% end %>
-            </p>
-          </div>
+         <div class="card card-block">
+              <div class="card-title"><%= link_to "#{app3.student_name}#{app3.zone ? '(' + app3.zone + ')' : ''}, #{app3.location}, #{app3.year}", app3 %></div>
+              <p class="card-text">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <% if current_user.admin? %>
+              <%= link_to 'Add Essay', new_application_essay_path(app3), {class: "btn btn-secondary", role: "button"} %>
+              <%= link_to 'Edit', edit_application_path(app3), {class: "btn btn-secondary", role: "button"} %>
+              <%= link_to 'Destroy', app3, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary", role: "button"} %>
+              <% end %>
+            </div>
           <% end %>
         </div>
       <% end %>

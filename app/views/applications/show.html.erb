@@ -9,7 +9,7 @@
           Major: <%= @application.major %>
           <br>
           <% if current_user.admin? %>
-              <%= link_to 'Edit', edit_application_path(@application), {class: "btn btn-secondary", role: "button" }%>
+              <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-secondary", role: "button" }%>
           <% end %>
         </p>
       </div>
@@ -39,21 +39,24 @@
             <h2 class="blog-post-title">Extracurriculars</h2>
             <p><em><% if @application.study_abroad %>Student has studied abroad <% else %> Student has not studied abroad <% end %></em></p>
             <% @extracurriculars.each do |ec| %>
-              <p>Name: <%= ec.name %></p>
               <p>Category: <%= ec.category %></p>
-              <p>Position: <%= ec.position %></p>
+              <p>Name: <%= ec.name %></p>
               <p>Start Date: <%= ec.start_date %></p>
               <p>End Date: <%= ec.end_date %></p>
+              <p>Position: <%= ec.position %></p>
               <p>Description: <%= ec.description %></p>
             <% end %>
           </div><!-- /.blog-post -->
 
           <div class="blog-post">
             <h2 class="blog-post-title">Essays</h2>
+            <% if current_user.admin? %>
+                <%= link_to 'Add Essay', new_application_essay_path(@application), {class: "btn btn-secondary", role: "button"} %>
+            <% end %>
 
             <% @essays.each do |essay| %>
               <% if essay.prompt %>
-              <p>(<%=essay.prompt.school.name%>)<%=essay.prompt.content %>:
+              <p>(<%=essay.prompt.school.name%>) <%=essay.prompt.content %>:
               <% else %>
               <p>(Prompt Not Available):
               <% end %>
