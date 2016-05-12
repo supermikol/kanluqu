@@ -7,6 +7,10 @@
 <p>Year: <%= @application.year %></p>
 <p>Study Abroad?: <%= @application.study_abroad %></p>
 <h3>Essays</h3>
+<% @essays.each do |essay| %>
+  <p><%=essay.prompt.content %></p>
+  <p><%=essay.title %></p>
+<% end %>
 
 <%= link_to 'Edit', edit_application_path(@application) %> |
 <%= link_to 'Back', applications_path %>
