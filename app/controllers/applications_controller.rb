@@ -15,6 +15,7 @@ class ApplicationsController < ApplicationController
     @essays = @application.essays.includes(:prompt)
     @extracurriculars = @application.extracurriculars
     @test_scores = @application.test_scores
+    @schools = @application.schools
   end
 
   # GET /applications/new
