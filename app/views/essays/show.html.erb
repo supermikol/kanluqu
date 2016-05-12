@@ -1,4 +1,13 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_essay_path(@essay) %> |
-<%= link_to 'Back', application_essays_path(@essay.application) %>
+Author:<%= @essay.application.student_name %>
+<% if @essay.prompt %>
+<h4><%= @essay.prompt.content %></h4>
+<% else %>
+<h4>Prompt Not Available</h4>
+<% end %>
+<p>Essay Type: <%= @essay.category %></p>
+<p><%= @essay.content %></p>
+<% if current_user.admin? %>
+<%= link_to 'Edit', edit_essay_path(@essay) %>
+<% end %>
+<%= link_to "Return to #{@essay.application.student_name}'s Application", application_path(@essay.application) %>

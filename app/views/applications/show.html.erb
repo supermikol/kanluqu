@@ -1,4 +1,38 @@
 <p id="notice"><%= notice %></p>
 
+<p>Name: <%= @application.student_name %></p>
+<p>Major: <%= @application.major %></p>
+<p>Location: <%= @application.location %></p>
+<p>Gender: <%= @application.gender %></p>
+<p>Year: <%= @application.year %></p>
+<p>Study Abroad?: <%= @application.study_abroad %></p>
+<h3>Test Scores</h3>
+<% @test_scores.each do |ts| %>
+  <p>Category: <%= ts.category %></p>
+  <p>Subject: <%= ts.subject %></p>
+  <p>Score: <%= ts.score %></p>
+  <p>Date Taken: <%= ts.date %></p>
+<% end %>
+<h3>Extracurriculars</h3>
+<% @extracurriculars.each do |ec| %>
+  <p>Name: <%= ec.name %></p>
+  <p>Category: <%= ec.category %></p>
+  <p>Position: <%= ec.position %></p>
+  <p>Start Date: <%= ec.start_date %></p>
+  <p>End Date: <%= ec.end_date %></p>
+  <p>Description: <%= ec.description %></p>
+<% end %>
+<h3>Essays</h3>
+<% @essays.each do |essay| %>
+  <% if essay.prompt %>
+  <p>(<%=essay.prompt.school.name%>)<%=essay.prompt.content %>:
+  <% else %>
+  <p>(Prompt Not Available):
+  <% end %>
+  <%=link_to essay.title, essay_path(essay) %></p>
+<% end %>
+
+<% if current_user.admin? %>
 <%= link_to 'Edit', edit_application_path(@application) %> |
-<%= link_to 'Back', applications_path %>
+<% end %>
+<%= link_to 'Return to Applications', applications_path %>

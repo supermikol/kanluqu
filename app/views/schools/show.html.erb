@@ -1,4 +1,44 @@
 <p id="notice"><%= notice %></p>
+<p>Institution Name: <%= @school.name %></p>
+<p>Country: <%= @school.country %></p>
 
-<%= link_to 'Edit', edit_school_path(@school) %> |
+<h3>Prompts</h3>
+<table>
+   <tr><th>Year</th><th>Prompt</th></tr>
+   <% @prompts.each do |prompt| %>
+      <tr>
+        <td><%= prompt.year %></td>
+        <td><%= link_to prompt.content, prompt_path(prompt) %></td>
+      </tr>
+   <% end %>
+</table>
+
+<h3>Rankings</h3>
+<table>
+  <tr><th>Year</th><th>Rank</th></tr>
+  <% @rankings.each do |ranking| %>
+    <tr>
+      <td><%= ranking.year %></td>
+      <td><%= ranking.rank %></td>
+    </tr>
+  <% end %>
+</table>
+<h3>Students who applied</h3>
+<table>
+  <tr>
+    <th>Year</th>
+    <th>Name</th>
+    <th>Major</th>
+  </tr>
+  <% @applications.each do |app| %>
+    <tr>
+      <td><%= app.year %></td>
+      <td><%= link_to app.student_name, application_path(app) %></td>
+      <td><%= app.major %></td>
+    </tr>
+  <% end %>
+</table>
+<% if current_user.admin? %>
+<%= link_to 'Edit', edit_school_path(@school) %>
+<% end %>
 <%= link_to 'Back', schools_path %>

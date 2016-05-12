@@ -14,13 +14,16 @@
       <tr>
         <td><%= essay.id %></td>
         <td><%= link_to 'Show', essay %></td>
+        <% if current_user.admin? %>
         <td><%= link_to 'Edit', edit_essay_path(essay) %></td>
         <td><%= link_to 'Destroy', essay, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
+<% if current_user.admin? %>
 <%= link_to 'New Essay', new_application_essay_path %>
+<% end %>

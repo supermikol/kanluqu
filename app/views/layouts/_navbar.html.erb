@@ -19,7 +19,7 @@
     <ul class="nav navbar-nav pull-xs-right">
       <% if user_signed_in? %>
       <li class="nav-item">
-        <%= link_to "Edit Profile(#{current_user.full_name})", edit_user_registration_path, class: 'nav-link' %>
+        Welcome, <%= current_user.full_name %>
       <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
