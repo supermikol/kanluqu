@@ -13,6 +13,8 @@ class ApplicationsController < ApplicationController
   # GET /applications/1.json
   def show
     @essays = @application.essays.includes(:prompt)
+    @extracurriculars = @application.extracurriculars
+    @test_scores = @application.test_scores
   end
 
   # GET /applications/new
