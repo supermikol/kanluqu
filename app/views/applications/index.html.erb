@@ -4,16 +4,19 @@
 <div class="album text-muted">
   <div class="container">
 
+  <% if current_user.admin? %>
+  <%= link_to 'New Application', new_application_path, {class: "btn btn-primary", role: "button"} %>
+  <% end %>
     <div class="row">
-    <% if current_user.admin? %>
-    <%= link_to 'New Application', new_application_path, {class: "btn btn-primary", role: "button"} %>
-    <% end %>
       <% @applications.in_groups_of(3) do |app1, app2, app3| %>
         <div class="row">
           <!-- <div class="col-md-4"> -->
             <div class="card card-block">
               <div class="card-title"><%= link_to "#{app1.student_name}#{app1.zone ? '(' + app1.zone + ')' : ''}, #{app1.location}, #{app1.year}", app1 %></div>
-              <p class="card-text">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p class="card-text">Schools:
+                <%= app1.schools.map{|school| school.name}.join(', ') %>
+              </p>
+              <p class="card-text">Notes: <%= app1.note %> </p>
               <% if current_user.admin? %>
               <%= link_to 'Add Essay', new_application_essay_path(app1), {class: "btn btn-secondary", role: "button"} %>
               <%= link_to 'Edit', edit_application_path(app1), {class: "btn btn-secondary", role: "button"} %>
@@ -24,7 +27,10 @@
           <% if app2 %>
           <div class="card card-block">
               <div class="card-title"><%= link_to "#{app2.student_name}#{app2.zone ? '(' + app2.zone + ')' : ''}, #{app2.location}, #{app2.year}", app2 %></div>
-              <p class="card-text">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p class="card-text">Schools:
+                <%= app2.schools.map{|school| school.name}.join(', ') %>
+              </p>
+              <p class="card-text">Notes: <%= app2.note %> </p>
               <% if current_user.admin? %>
               <%= link_to 'Add Essay', new_application_essay_path(app2), {class: "btn btn-secondary", role: "button"} %>
               <%= link_to 'Edit', edit_application_path(app2), {class: "btn btn-secondary", role: "button"} %>
@@ -35,7 +41,10 @@
          <% if app3 %>
          <div class="card card-block">
               <div class="card-title"><%= link_to "#{app3.student_name}#{app3.zone ? '(' + app3.zone + ')' : ''}, #{app3.location}, #{app3.year}", app3 %></div>
-              <p class="card-text">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+              <p class="card-text">Schools:
+                <%= app3.schools.map{|school| school.name}.join(', ') %>
+              </p>
+              <p class="card-text">Notes: <%= app3.note %> </p>
               <% if current_user.admin? %>
               <%= link_to 'Add Essay', new_application_essay_path(app3), {class: "btn btn-secondary", role: "button"} %>
               <%= link_to 'Edit', edit_application_path(app3), {class: "btn btn-secondary", role: "button"} %>

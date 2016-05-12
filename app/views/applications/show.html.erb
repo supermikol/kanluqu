@@ -2,15 +2,16 @@
 
 <div class="blog-header">
       <div class="container">
-        <h2 class="blog-title"><%= @application.student_name %></h1>
+        <h2 class="blog-title">
+          <%= @application.student_name %>
+          <% if current_user.admin? %>
+              <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-secondary", role: "button" }%>
+          <% end %>
+        </h2>
         <p class="lead blog-description">
           <%= @application.location %>, <%= @application.year %>, <% if @application.gender == 'm'%>Male<% else %>Female<% end %>
           <br>
           Major: <%= @application.major %>
-          <br>
-          <% if current_user.admin? %>
-              <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-secondary", role: "button" }%>
-          <% end %>
         </p>
       </div>
     </div>
@@ -22,7 +23,7 @@
         <div class="col-sm-8 blog-main">
 
           <div class="blog-post">
-            <h2 class="blog-post-title">Test Scores</h2>
+            <h3 class="blog-post-title">Test Scores</h3>
             <h4>SAT</h4>
             <h4>TOEFL</h4>
             <h4>AP</h4>
@@ -36,7 +37,7 @@
           </div><!-- /.blog-post -->
 
           <div class="blog-post">
-            <h2 class="blog-post-title">Extracurriculars</h2>
+            <h3 class="blog-post-title">Extracurriculars</h3>
             <p><em><% if @application.study_abroad %>Student has studied abroad <% else %> Student has not studied abroad <% end %></em></p>
             <% @extracurriculars.each do |ec| %>
               <p>Category: <%= ec.category %></p>
@@ -49,7 +50,7 @@
           </div><!-- /.blog-post -->
 
           <div class="blog-post">
-            <h2 class="blog-post-title">Essays</h2>
+            <h3 class="blog-post-title">Essays</h3>
             <% if current_user.admin? %>
                 <%= link_to 'Add Essay', new_application_essay_path(@application), {class: "btn btn-secondary", role: "button"} %>
             <% end %>
