@@ -7,13 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #Create Admin
-admin = User.new(full_name: "Mike Admin", email: "mdu123@gmail.com", password: "123456", password_confirmation: "123456", admin: true)
-admin.skip_confirmation!
+admin = User.new(full_name: "Mike-Admin", email: "mdu123@gmail.com", password: "123456", password_confirmation: "123456", admin: true)
 admin.save!
 
 #Create Simple User
-user = User.new(full_name: "Mike User", email: "gummibare@gmail.com", password: "123456", password_confirmation: "123456", admin: true)
-user.skip_confirmation!
+user = User.new(full_name: "Mike-User", email: "gummibare@gmail.com", password: "123456", password_confirmation: "123456", admin: false)
 user.save!
 
 

@@ -5,7 +5,9 @@
   <div class="container">
 
     <div class="row">
+    <% if current_user.admin? %>
     <%= link_to 'New Application', new_application_path, {class: "btn btn-primary", role: "button"} %>
+    <% end %>
       <% @applications.in_groups_of(3) do |app1, app2, app3| %>
         <div class="row">
           <div class="col-md-4">
