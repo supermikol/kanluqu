@@ -13,7 +13,7 @@
 
   <div>
     <%= f.label :category %>
-    <%= f.text_field :category %>
+    <%= f.select :category, ['Main Essay', 'Supplement', 'Writing Sample', 'Other'], include_blank: true %>
   </div>
 
   <div>
@@ -23,7 +23,7 @@
 
   <div>
     <%= f.label :content %>
-    <%= f.text_field :content %>
+    <%= f.text_area :content %>
   </div>
 
   <div class="actions">
