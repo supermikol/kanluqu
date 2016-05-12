@@ -1,4 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<p>Name: <%= @application.student_name %></p>
+<p>Major: <%= @application.major %></p>
+<p>Location: <%= @application.location %></p>
+<p>Gender: <%= @application.gender %></p>
+<p>Year: <%= @application.year %></p>
+<p>Study Abroad?: <%= @application.study_abroad %></p>
+<h3>Essays</h3>
+
 <%= link_to 'Edit', edit_application_path(@application) %> |
 <%= link_to 'Back', applications_path %>
