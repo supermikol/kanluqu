@@ -17,6 +17,7 @@ class EssaysController < ApplicationController
   end
 
   def edit
+    @application = @essay.application
   end
 
   def create

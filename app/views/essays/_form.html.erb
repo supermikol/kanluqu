@@ -17,6 +17,11 @@
   </div>
 
   <div>
+    <%= f.label :prompts, "Prompt" %>
+    <%= f.collection_select :prompt_id, @application.prompts, :id, :prompt_with_school, include_blank: true %>
+  </div>
+
+  <div>
     <%= f.label :title %>
     <%= f.text_field :title %>
   </div>

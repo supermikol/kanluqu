@@ -24,29 +24,129 @@
 
           <div class="blog-post">
             <h3 class="blog-post-title">Test Scores</h3>
-            <h4>SAT</h4>
-            <h4>TOEFL</h4>
-            <h4>AP</h4>
-            <h4>Other</h4>
-            <% @test_scores.each do |ts| %>
-              <p>Category: <%= ts.category %></p>
-              <p>Subject: <%= ts.subject %></p>
-              <p>Score: <%= ts.score %></p>
-              <p>Date Taken: <%= ts.date %></p>
-            <% end %>
+            <table class="table">
+              <% if @sat_scores.length > 0 %>
+              <thead>
+                <tr><th>SAT</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                <% @sat_scores.each do |sc| %>
+                  <td><%= sc.subject %></td>
+                  <td><%= sc.score %></td>
+                <% end %>
+                </tr>
+              </tbody>
+              <% end %>
+              <% if @act_scores.length > 0 %>
+              <thead>
+                <tr><th>ACT</th></tr>
+              </thead>
+              <tbody>
+                <% @act_scores.each do |sc| %>
+                <tr>
+                  <td><%= sc.subject %></td>
+                  <td><%= sc.score %></td>
+                </tr>
+                <% end %>
+              </tbody>
+              <% end %>
+              <% if @sat_subject_scores.length > 0 %>
+              <thead>
+                <tr><th>SAT Subject Tests</th></tr>
+              </thead>
+              <tbody>
+                <% @sat_subject_scores.each do |sc| %>
+                  <tr>
+                    <td><%= sc.subject %></td>
+                    <td><%= sc.score %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+              <% end %>
+              <% if @toefl_scores.length > 0 %>
+              <thead>
+              <tr><th>TOEFL</th></tr>
+              </thead>
+              <tbody>
+                <% @toefl_scores.each do |sc| %>
+                  <tr>
+                    <td><%= sc.subject %></td>
+                    <td><%= sc.score %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+              <% end %>
+              <% if @ap_scores.length > 0 %>
+              <thead>
+              <tr><th>AP</th></tr>
+              </thead>
+              <tbody>
+                <% @ap_scores.each do |sc| %>
+                  <tr>
+                    <td><%= sc.subject %></td>
+                    <td><%= sc.score %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+              <% end %>
+              <% if @ib_scores.length > 0 %>
+              <thead>
+              <tr><th>IB</th></tr>
+              </thead>
+              <tbody>
+                <% @ib_scores.each do |sc| %>
+                  <tr>
+                    <td><%= sc.subject %></td>
+                    <td><%= sc.score %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+              <% end %>
+              <% if @other_scores.length > 0 %>
+              <tr><th>Other</th></tr>
+              </thead>
+              <tbody>
+                <% @other_scores.each do |sc| %>
+                  <tr>
+                    <td><%= sc.subject %></td>
+                    <td><%= sc.score %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+              <% end %>
+            </table>
           </div><!-- /.blog-post -->
 
           <div class="blog-post">
             <h3 class="blog-post-title">Extracurriculars</h3>
             <p><em><% if @application.study_abroad %>Student has studied abroad <% else %> Student has not studied abroad <% end %></em></p>
-            <% @extracurriculars.each do |ec| %>
-              <p>Category: <%= ec.category %></p>
-              <p>Name: <%= ec.name %></p>
-              <p>Start Date: <%= ec.start_date %></p>
-              <p>End Date: <%= ec.end_date %></p>
-              <p>Position: <%= ec.position %></p>
-              <p>Description: <%= ec.description %></p>
-            <% end %>
+
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Start</th>
+                    <th>End</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @extracurriculars.each do |ec| %>
+                  <tr>
+                    <td><%= ec.category %></td>
+                    <td><%= ec.name %></td>
+                    <td><%= ec.position %></td>
+                    <td><%= ec.start_date %></td>
+                    <td><%= ec.end_date %></td>
+                  </tr>
+                  <tr>
+                    <td colspan="5"><%= ec.description %></td>
+                  </tr>
+                  <% end %>
+                </tbody>
+              </table>
           </div><!-- /.blog-post -->
 
           <div class="blog-post">

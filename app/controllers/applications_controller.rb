@@ -15,6 +15,13 @@ class ApplicationsController < ApplicationController
     @essays = @application.essays.includes(:prompt)
     @extracurriculars = @application.extracurriculars
     @test_scores = @application.test_scores
+    @sat_scores = @test_scores.where(category: "SAT")
+    @sat_subject_scores = @test_scores.where(category: "SAT Subject Test")
+    @toefl_scores = @test_scores.where(category: "TOEFL")
+    @act_scores = @test_scores.where(category: "ACT")
+    @ap_scores = @test_scores.where(category: "AP")
+    @ib_scores = @test_scores.where(category: "IB")
+    @other_scores = @test_scores.where(category: "Other")
     @schools = @application.schools
   end
 
