@@ -1,24 +1,20 @@
-<p id="notice"><%= notice %></p>
-
-<div class="blog-header">
-  <div class="container">
-    <h3 class="blog-title">
-      <%= @application.student_name %>
-
-    </h3>
-    <p class="lead blog-description">
-      <%= @application.location %>, <%= @application.year %>, <% if @application.gender == 'm'%>Male<% else %>Female<% end %>
-      <br>
-      Major: <%= @application.major %>
-    </p>
-  </div>
-</div>
-
 <div class="container">
 
   <div class="row">
-
-    <div class="col-sm-8 blog-main">
+    <div class="col-sm-7 blog-main">
+      <div class="blog-post">
+        <h3 class="blog-title">
+          <%= @application.student_name %>
+        <% if current_user.admin? %>
+          <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-info", role: "button" }%>
+        <% end %>
+        </h3>
+        <p class="lead blog-description">
+          <%= @application.location %>, <%= @application.year %>, <% if @application.gender == 'm'%>Male<% else %>Female<% end %>
+          <br>
+          Major: <%= @application.major %>
+        </p>
+      </div>
 
       <div class="blog-post">
         <h5 class="blog-post-title">Test Scores</h5>
@@ -118,7 +114,7 @@
 
       <div class="blog-post">
         <h5 class="blog-post-title">Extracurriculars</h5>
-        <p><em><% if @application.study_abroad %>Student has studied abroad <% else %> Student has not studied abroad <% end %></em></p>
+        <p><em><strong><% if @application.study_abroad %>Student has studied abroad <% else %> Student has not studied abroad <% end %></strong></em></p>
 
         <table class="table table-striped">
           <thead>
@@ -160,27 +156,24 @@
         <% end %>
 
         <% if current_user.admin? %>
-        <%= link_to 'Add Essay', new_application_essay_path(@application), {class: "btn btn-secondary", role: "button"} %>
+         <%= link_to 'Add Essay', new_application_essay_path(@application), {class: "btn btn-secondary", role: "button"} %>
         <% end %>
       </div><!-- /.blog-post -->
     </div><!-- /.blog-main -->
-      <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-        <div class="sidebar-module sidebar-module-inset">
-          <% if current_user.admin? %>
-          <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-secondary", role: "button" }%>
+    <div class="col-sm-4 col-sm-offset-1 blog-sidebar">
+      <div class="sidebar-module sidebar-module-inset">
+        <h5>Notes</h5>
+        <p>None</p>
+      </div>
+      <div class="sidebar-module">
+        <h5>Schools Applied For</h5>
+        <ol class="list-unstyled">
+          <% @schools.each do |school| %>
+          <li><a href="#"><%= link_to "#{school.name}, #{school.country}", school_path(school) %></a></li>
           <% end %>
-          <h5>Notes</h5>
-          <p>None</p>
-        </div>
-        <div class="sidebar-module">
-          <h5>Schools Applied For</h5>
-          <ol class="list-unstyled">
-            <% @schools.each do |school| %>
-            <li><a href="#"><%= link_to "#{school.name}, #{school.country}", school_path(school) %></a></li>
-            <% end %>
-          </ol>
-        </div>
-      </div><!-- /.blog-sidebar -->
+        </ol>
+      </div>
+    </div><!-- /.blog-sidebar -->
 
   </div><!-- /.row -->
   <nav>
