@@ -1,195 +1,192 @@
 <p id="notice"><%= notice %></p>
 
 <div class="blog-header">
-      <div class="container">
-        <h2 class="blog-title">
-          <%= @application.student_name %>
-          <% if current_user.admin? %>
-              <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-secondary", role: "button" }%>
+  <div class="container">
+    <h3 class="blog-title">
+      <%= @application.student_name %>
+
+    </h3>
+    <p class="lead blog-description">
+      <%= @application.location %>, <%= @application.year %>, <% if @application.gender == 'm'%>Male<% else %>Female<% end %>
+      <br>
+      Major: <%= @application.major %>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-sm-8 blog-main">
+
+      <div class="blog-post">
+        <h5 class="blog-post-title">Test Scores</h5>
+        <table class="table">
+          <% if @sat_scores.length > 0 %>
+          <thead>
+            <tr><th>SAT</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% @sat_scores.each do |sc| %>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+              <% end %>
+            </tr>
+          </tbody>
           <% end %>
-        </h2>
-        <p class="lead blog-description">
-          <%= @application.location %>, <%= @application.year %>, <% if @application.gender == 'm'%>Male<% else %>Female<% end %>
-          <br>
-          Major: <%= @application.major %>
-        </p>
-      </div>
-    </div>
-
-    <div class="container">
-
-      <div class="row">
-
-        <div class="col-sm-8 blog-main">
-
-          <div class="blog-post">
-            <h3 class="blog-post-title">Test Scores</h3>
-            <table class="table">
-              <% if @sat_scores.length > 0 %>
-              <thead>
-                <tr><th>SAT</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                <% @sat_scores.each do |sc| %>
-                  <td><%= sc.subject %></td>
-                  <td><%= sc.score %></td>
-                <% end %>
-                </tr>
-              </tbody>
-              <% end %>
-              <% if @act_scores.length > 0 %>
-              <thead>
-                <tr><th>ACT</th></tr>
-              </thead>
-              <tbody>
-                <% @act_scores.each do |sc| %>
-                <tr>
-                  <td><%= sc.subject %></td>
-                  <td><%= sc.score %></td>
-                </tr>
-                <% end %>
-              </tbody>
-              <% end %>
-              <% if @sat_subject_scores.length > 0 %>
-              <thead>
-                <tr><th>SAT Subject Tests</th></tr>
-              </thead>
-              <tbody>
-                <% @sat_subject_scores.each do |sc| %>
-                  <tr>
-                    <td><%= sc.subject %></td>
-                    <td><%= sc.score %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-              <% end %>
-              <% if @toefl_scores.length > 0 %>
-              <thead>
-              <tr><th>TOEFL</th></tr>
-              </thead>
-              <tbody>
-                <% @toefl_scores.each do |sc| %>
-                  <tr>
-                    <td><%= sc.subject %></td>
-                    <td><%= sc.score %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-              <% end %>
-              <% if @ap_scores.length > 0 %>
-              <thead>
-              <tr><th>AP</th></tr>
-              </thead>
-              <tbody>
-                <% @ap_scores.each do |sc| %>
-                  <tr>
-                    <td><%= sc.subject %></td>
-                    <td><%= sc.score %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-              <% end %>
-              <% if @ib_scores.length > 0 %>
-              <thead>
-              <tr><th>IB</th></tr>
-              </thead>
-              <tbody>
-                <% @ib_scores.each do |sc| %>
-                  <tr>
-                    <td><%= sc.subject %></td>
-                    <td><%= sc.score %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-              <% end %>
-              <% if @other_scores.length > 0 %>
-              <tr><th>Other</th></tr>
-              </thead>
-              <tbody>
-                <% @other_scores.each do |sc| %>
-                  <tr>
-                    <td><%= sc.subject %></td>
-                    <td><%= sc.score %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-              <% end %>
-            </table>
-          </div><!-- /.blog-post -->
-
-          <div class="blog-post">
-            <h3 class="blog-post-title">Extracurriculars</h3>
-            <p><em><% if @application.study_abroad %>Student has studied abroad <% else %> Student has not studied abroad <% end %></em></p>
-
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th>Type</th>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Start</th>
-                    <th>End</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @extracurriculars.each do |ec| %>
-                  <tr>
-                    <td><%= ec.category %></td>
-                    <td><%= ec.name %></td>
-                    <td><%= ec.position %></td>
-                    <td><%= ec.start_date %></td>
-                    <td><%= ec.end_date %></td>
-                  </tr>
-                  <tr>
-                    <td colspan="5"><%= ec.description %></td>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-          </div><!-- /.blog-post -->
-
-          <div class="blog-post">
-            <h3 class="blog-post-title">Essays</h3>
-            <% if current_user.admin? %>
-                <%= link_to 'Add Essay', new_application_essay_path(@application), {class: "btn btn-secondary", role: "button"} %>
+          <% if @act_scores.length > 0 %>
+          <thead>
+            <tr><th>ACT</th></tr>
+          </thead>
+          <tbody>
+            <% @act_scores.each do |sc| %>
+            <tr>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+            </tr>
             <% end %>
-
-            <% @essays.each do |essay| %>
-              <% if essay.prompt %>
-              <p>(<%=essay.prompt.school.name%>) <%=essay.prompt.content %>:
-              <% else %>
-              <p>(Prompt Not Available):
-              <% end %>
-              <%=link_to essay.title, essay_path(essay) %></p>
+          </tbody>
+          <% end %>
+          <% if @sat_subject_scores.length > 0 %>
+          <thead>
+            <tr><th>SAT Subject Tests</th></tr>
+          </thead>
+          <tbody>
+            <% @sat_subject_scores.each do |sc| %>
+            <tr>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+            </tr>
             <% end %>
-          </div><!-- /.blog-post -->
+          </tbody>
+          <% end %>
+          <% if @toefl_scores.length > 0 %>
+          <thead>
+            <tr><th>TOEFL</th></tr>
+          </thead>
+          <tbody>
+            <% @toefl_scores.each do |sc| %>
+            <tr>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+            </tr>
+            <% end %>
+          </tbody>
+          <% end %>
+          <% if @ap_scores.length > 0 %>
+          <thead>
+            <tr><th>AP</th></tr>
+          </thead>
+          <tbody>
+            <% @ap_scores.each do |sc| %>
+            <tr>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+            </tr>
+            <% end %>
+          </tbody>
+          <% end %>
+          <% if @ib_scores.length > 0 %>
+          <thead>
+            <tr><th>IB</th></tr>
+          </thead>
+          <tbody>
+            <% @ib_scores.each do |sc| %>
+            <tr>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+            </tr>
+            <% end %>
+          </tbody>
+          <% end %>
+          <% if @other_scores.length > 0 %>
+          <tr><th>Other</th></tr>
+        </thead>
+        <tbody>
+          <% @other_scores.each do |sc| %>
+          <tr>
+            <td><%= sc.subject %></td>
+            <td><%= sc.score %></td>
+          </tr>
+          <% end %>
+        </tbody>
+        <% end %>
+        </table>
+      </div><!-- /.blog-post -->
 
-          <nav>
-            <ul class="pager">
-            <li><%= link_to 'Return to Applications', applications_path %></li>
-            </ul>
-          </nav>
+      <div class="blog-post">
+        <h5 class="blog-post-title">Extracurriculars</h5>
+        <p><em><% if @application.study_abroad %>Student has studied abroad <% else %> Student has not studied abroad <% end %></em></p>
 
-        </div><!-- /.blog-main -->
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Start</th>
+              <th>End</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @extracurriculars.each do |ec| %>
+            <tr>
+              <td><%= ec.category %></td>
+              <td><%= ec.name %></td>
+              <td><%= ec.position %></td>
+              <td><%= ec.start_date %></td>
+              <td><%= ec.end_date %></td>
+            </tr>
+            <tr>
+              <td colspan="5">Details: <%= ec.description %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div><!-- /.blog-post -->
 
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          <div class="sidebar-module sidebar-module-inset">
-            <h4>Notes</h4>
-            <p>None</p>
-          </div>
-          <div class="sidebar-module">
-            <h4>Schools Applied For</h4>
-            <ol class="list-unstyled">
-              <% @schools.each do |school| %>
-              <li><a href="#"><%= link_to "#{school.name}, #{school.country}", school_path(school) %></a></li>
-              <% end %>
-            </ol>
-          </div>
-        </div><!-- /.blog-sidebar -->
+      <div class="blog-post">
+        <h5 class="blog-post-title">Essays</h5>
 
-      </div><!-- /.row -->
+        <% @essays.each do |essay| %>
+          <% if essay.prompt %>
+            <p>(<%=essay.prompt.school.name%>) <%=essay.prompt.content %>:
+          <% else %>
+            <p>(Prompt Not Available):
+          <% end %>
+          <%=link_to essay.title, essay_path(essay) %></p>
+        <% end %>
 
-    </div><!-- /.container -->
+        <% if current_user.admin? %>
+        <%= link_to 'Add Essay', new_application_essay_path(@application), {class: "btn btn-secondary", role: "button"} %>
+        <% end %>
+      </div><!-- /.blog-post -->
+    </div><!-- /.blog-main -->
+      <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="sidebar-module sidebar-module-inset">
+          <% if current_user.admin? %>
+          <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-secondary", role: "button" }%>
+          <% end %>
+          <h5>Notes</h5>
+          <p>None</p>
+        </div>
+        <div class="sidebar-module">
+          <h5>Schools Applied For</h5>
+          <ol class="list-unstyled">
+            <% @schools.each do |school| %>
+            <li><a href="#"><%= link_to "#{school.name}, #{school.country}", school_path(school) %></a></li>
+            <% end %>
+          </ol>
+        </div>
+      </div><!-- /.blog-sidebar -->
 
+  </div><!-- /.row -->
+  <nav>
+    <ul class="pager">
+      <li><%= link_to 'Return to Applications', applications_path %></li>
+    </ul>
+  </nav>
 
+</div><!-- /.container -->

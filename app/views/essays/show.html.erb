@@ -1,14 +1,56 @@
 <p id="notice"><%= notice %></p>
-Essay Type: <%= @essay.category %>
-Author:<%= @essay.application.student_name %>
-<% if @essay.prompt %>
-<%=@essay.prompt.school.name%>
-<h4><%= simple_format(@essay.prompt.content) %></h4>
-<% else %>
-<h4>Prompt Not Available</h4>
-<% end %>
-<p><%= simple_format(@essay.content) %></p>
-<% if current_user.admin? %>
-<%= link_to 'Edit', edit_essay_path(@essay) %>
-<% end %>
-<%= link_to "Return to #{@essay.application.student_name}'s Application", application_path(@essay.application) %>
+
+<div class="blog-header">
+  <div class="container">
+    <p class="lead blog-description">
+      <strong><%= @essay.category %></strong>
+      <br>
+      <% if @essay.prompt %>
+        <%=@essay.prompt.school.name%>
+        <%= @essay.prompt.content %>
+      <% else %>
+        Prompt Not Available
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-sm-8 blog-main">
+
+      <div class="blog-post">
+        <p class="blog-post-meta">Author: <%= @essay.application.student_name %></p>
+        <p><%= simple_format(@essay.content) %></p>
+      </div><!-- /.blog-post -->
+
+      <nav>
+        <ul class="pager">
+          <% if current_user.admin? %>
+            <li><%= link_to 'Edit', edit_essay_path(@essay) %></li>
+          <% end %>
+          <li><%= link_to "Return to #{@essay.application.student_name}'s Application", application_path(@essay.application) %></li>
+        </ul>
+      </nav>
+
+    </div><!-- /.blog-main -->
+
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+      <div class="sidebar-module sidebar-module-inset">
+        <h5>Essays from this student</h5>
+        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+      </div>
+      <div class="sidebar-module">
+        <h5>Essays with this prompt</h5>
+        <ol class="list-unstyled">
+          <li><a href="#">March 2014</a></li>
+          <li><a href="#">February 2014</a></li>
+        </ol>
+      </div>
+    </div><!-- /.blog-sidebar -->
+
+  </div><!-- /.row -->
+
+</div><!-- /.container -->
