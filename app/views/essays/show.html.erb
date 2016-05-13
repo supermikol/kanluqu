@@ -1,12 +1,13 @@
 <p id="notice"><%= notice %></p>
+Essay Type: <%= @essay.category %>
 Author:<%= @essay.application.student_name %>
 <% if @essay.prompt %>
-<h4><%= @essay.prompt.content %></h4>
+<%=@essay.prompt.school.name%>
+<h4><%= simple_format(@essay.prompt.content) %></h4>
 <% else %>
 <h4>Prompt Not Available</h4>
 <% end %>
-<p>Essay Type: <%= @essay.category %></p>
-<p><%= @essay.content %></p>
+<p><%= simple_format(@essay.content) %></p>
 <% if current_user.admin? %>
 <%= link_to 'Edit', edit_essay_path(@essay) %>
 <% end %>

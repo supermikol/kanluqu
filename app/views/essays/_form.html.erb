@@ -1,4 +1,4 @@
-<%= form_for([@application, @essay]) do |f| %>
+<%= form_for([@application, @essay], url: url, method: method) do |f| %>
   <% if @essay.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@essay.errors.count, "error") %> prohibited this essay from being saved:</h2>
@@ -13,7 +13,12 @@
 
   <div>
     <%= f.label :category %>
-    <%= f.text_field :category %>
+    <%= f.select :category, ['Main Essay', 'Supplement', 'Writing Sample', 'Other'], include_blank: true %>
+  </div>
+
+  <div>
+    <%= f.label :prompts, "Prompt" %>
+    <%= f.collection_select :prompt_id, @application.prompts, :id, :prompt_with_school, include_blank: true %>
   </div>
 
   <div>
@@ -23,7 +28,7 @@
 
   <div>
     <%= f.label :content %>
-    <%= f.text_field :content %>
+    <%= f.text_area :content %>
   </div>
 
   <div class="actions">

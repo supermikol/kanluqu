@@ -16,7 +16,7 @@ user.save!
 
 
 #Create Applications
-app = Application.create(user_id: 1, student_name: "Joey", major: "Biology", location: "Shanghai", gender: "M", year: 2016, study_abroad: false)
+app = Application.create(user_id: 1, student_name: "Joey", major: "Biology", location: "Shanghai", gender: "M", year: 2016, study_abroad: false, note: "This applicant lived in Japan")
 app = Application.create(user_id: 1, student_name: "Cindy", major: "CS", location: "Guangzhou", gender: "F", year: 2016, study_abroad: false)
 
 #Create Schools
