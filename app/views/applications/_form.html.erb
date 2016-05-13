@@ -25,7 +25,7 @@
   </div>
   <div>
     <%= f.label :zone %>
-    <%= f.select :zone, ['China', 'USA', 'Canada', 'Australia', 'UK', 'Other'] %>
+    <%= f.select :zone, ['Mainland China', 'USA', 'Canada', 'Australia', 'UK', 'Hong Kong' 'Other'] %>
   </div>
   <div>
     <%= f.label :gender %>
@@ -76,7 +76,7 @@
       <%= ff.text_field :name %>
 
       <%= ff.label :category %>
-      <%= ff.select :category, ['School Club', 'Summer Camp', 'Volunteer', 'Internship', 'Work', 'Hobby'], include_blank: true %>
+      <%= ff.select :category, ['School Club', 'Sport', 'Summer Camp', 'Volunteer', 'Internship', 'Work', 'Hobby', 'Other'], include_blank: true %>
 
       <%= ff.label :position %>
       <%= ff.text_field :position %>

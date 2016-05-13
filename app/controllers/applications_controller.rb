@@ -6,7 +6,7 @@ class ApplicationsController < ApplicationController
   # GET /applications
   # GET /applications.json
   def index
-    @applications = Application.all.includes(:schools)
+    @applications = Application.all.includes(:schools, :test_scores)
   end
 
   # GET /applications/1
