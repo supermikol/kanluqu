@@ -1,4 +1,4 @@
-<%= form_for([@application, @essay]) do |f| %>
+<%= form_for([@application, @essay], url: url, method: method) do |f| %>
   <% if @essay.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@essay.errors.count, "error") %> prohibited this essay from being saved:</h2>

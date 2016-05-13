@@ -1,6 +1,6 @@
 <h1>Editing Essay</h1>
 
-<%= render 'form' %>
+<%= render partial: 'form', locals: {url: essay_path, method: :patch} %>
 
 <%= link_to 'Show', @essay %> |
 <%= link_to "Return to #{@application.student_name}'s Application", application_path(@application) %>
