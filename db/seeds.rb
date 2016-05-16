@@ -26,7 +26,7 @@ School.create([{name: "UCLA", country: "USA"}, {name: "USC", country: "USA"}, {n
 Prompt.create([{school_id: 1, content: "Tell us about yourself in 250 words or less", year: 2016}, {school_id: 2, content: "What matters to you?", year: 2016}, {school_id: 1, content: "Where's Waldo?", year: 2016}])
 
 #Create Essays
-Essay.create([{application_id: 1, prompt_id: 1, category: "Main Essay", title: "My life and I", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out"},{application_id: 2, prompt_id: 3, category: "Supplement", title: "Waldo Lives", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out"},{application_id: 2, prompt_id: 2, category: "Supplement", title: "This matters", content: "hello this is the what matters essay. \nThis essay is about some cool stuff.\n Check it out"}])
+Essay.create([{application_id: 1, prompt_id: 1, category: "Main Essay", title: "My life and I", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.5},{application_id: 2, prompt_id: 3, category: "Supplement", title: "Waldo Lives", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.4},{application_id: 2, prompt_id: 2, category: "Supplement", title: "This matters", content: "hello this is the what matters essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.8}])
 
 #Create Test Scores
 TestScore.create([{application_id: 1, category: "AP", subject: "Calculus AB", score: 5, date: "05/15/2016"},{application_id: 1, category: "SAT", subject: "Math", score: 700, date: "05/01/2016"},{application_id: 2, category: "AP", subject: "Physics", score: 5, date: "05/10/2016"}])

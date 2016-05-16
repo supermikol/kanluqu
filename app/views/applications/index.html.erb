@@ -10,7 +10,7 @@
         <div class="row">
           <!-- <div class="col-md-4"> -->
             <div class="card card-block">
-              <div class="card-title"><%= link_to "#{app1.student_name}#{app1.zone ? '(' + app1.zone + ')' : ''}, #{app1.location}, #{app1.year}", app1 %></div>
+              <div class="card-title"><%= link_to "#{app1.student_name}, #{app1.location}, #{app1.year}", app1 %></div>
               <% if app1.test_scores.find_by(category: "SAT") %>
               <p class="card-text">
                 Math: <%= app1.test_scores.find_by(category: "SAT", subject: "Math") ? app1.test_scores.find_by(category: "SAT", subject: "Math").score : "N/A" %>
@@ -31,7 +31,7 @@
           <!-- </div> -->
           <% if app2 %>
           <div class="card card-block">
-              <div class="card-title"><%= link_to "#{app2.student_name}#{app2.zone ? '(' + app2.zone + ')' : ''}, #{app2.location}, #{app2.year}", app2 %></div>
+              <div class="card-title"><%= link_to "#{app2.student_name}, #{app2.location}, #{app2.year}", app2 %></div>
               <% if app2.test_scores.find_by(category: "SAT") %>
               <p class="card-text">
                 Math: <%= app2.test_scores.find_by(category: "SAT", subject: "Math") ? app2.test_scores.find_by(category: "SAT", subject: "Math").score : "N/A" %>
@@ -52,7 +52,7 @@
          <% end %>
          <% if app3 %>
          <div class="card card-block">
-              <div class="card-title"><%= link_to "#{app3.student_name}#{app3.zone ? '(' + app3.zone + ')' : ''}, #{app3.location}, #{app3.year}", app3 %></div>
+              <div class="card-title"><%= link_to "#{app3.student_name}, #{app3.location}, #{app3.year}", app3 %></div>
               <% if app3.test_scores.find_by(category: "SAT") %>
               <p class="card-text">
                 Math: <%= app3.test_scores.find_by(category: "SAT", subject: "Math") ? app3.test_scores.find_by(category: "SAT", subject: "Math").score : "N/A" %>
