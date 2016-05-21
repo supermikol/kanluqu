@@ -153,6 +153,7 @@
             <p>(Prompt Not Available):
           <% end %>
           <%=link_to essay.title, essay_path(essay) %></p>
+          <p>Sentiment: <%=essay.sentiment%></p>
         <% end %>
 
         <% if current_user.admin? %>

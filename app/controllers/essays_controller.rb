@@ -30,7 +30,7 @@ class EssaysController < ApplicationController
     uri = URI(url)
     response = Net::HTTP.get(uri)
     json_response = JSON.parse(response)
-    @essay.sentiment = json_response['aggregate']['score']
+    @essay.sentiment = json_response['aggregate']['score'].round(3)
     @essay.application_id = params[:application_id]
     respond_to do |format|
       if @essay.save
