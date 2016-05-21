@@ -18,10 +18,10 @@
 
       <div class="blog-post">
         <h5 class="blog-post-title">Test Scores</h5>
-        <table class="table table-striped">
+        <table class="table table-striped table-sm">
           <% if @sat_scores.length > 0 %>
           <thead>
-            <tr><th>SAT</th></tr>
+            <tr><th colspan="2">SAT</th></tr>
           </thead>
           <tbody>
             <tr>
@@ -34,7 +34,7 @@
           <% end %>
           <% if @act_scores.length > 0 %>
           <thead>
-            <tr><th>ACT</th></tr>
+            <tr><th colspan="2">ACT</th></tr>
           </thead>
           <tbody>
             <% @act_scores.each do |sc| %>
@@ -47,7 +47,7 @@
           <% end %>
           <% if @sat_subject_scores.length > 0 %>
           <thead>
-            <tr><th>SAT Subject Tests</th></tr>
+            <tr><th colspan="2">SAT Subject Tests</th></tr>
           </thead>
           <tbody>
             <% @sat_subject_scores.each do |sc| %>
@@ -60,7 +60,7 @@
           <% end %>
           <% if @toefl_scores.length > 0 %>
           <thead>
-            <tr><th>TOEFL</th></tr>
+            <tr><th colspan="2">TOEFL</th></tr>
           </thead>
           <tbody>
             <% @toefl_scores.each do |sc| %>
@@ -73,7 +73,7 @@
           <% end %>
           <% if @ap_scores.length > 0 %>
           <thead>
-            <tr><th>AP</th></tr>
+            <tr><th colspan="2">AP</th></tr>
           </thead>
           <tbody>
             <% @ap_scores.each do |sc| %>
@@ -86,7 +86,7 @@
           <% end %>
           <% if @ib_scores.length > 0 %>
           <thead>
-            <tr><th>IB</th></tr>
+            <tr><th colspan="2">IB</th></tr>
           </thead>
           <tbody>
             <% @ib_scores.each do |sc| %>
@@ -98,7 +98,7 @@
           </tbody>
           <% end %>
           <% if @other_scores.length > 0 %>
-          <tr><th>Other</th></tr>
+          <tr><th colspan="2">Other</th></tr>
         </thead>
         <tbody>
           <% @other_scores.each do |sc| %>
@@ -116,7 +116,7 @@
         <h5 class="blog-post-title">Extracurriculars</h5>
         <p><em><strong><% if @application.study_abroad %>Student has studied abroad <% else %> Student has not studied abroad <% end %></strong></em></p>
 
-        <table class="table table-striped">
+        <table class="table table-striped table-sm">
           <thead>
             <tr>
               <th>Type</th>
@@ -147,13 +147,16 @@
         <h5 class="blog-post-title">Essays</h5>
 
         <% @essays.each do |essay| %>
-          <% if essay.prompt %>
-            <p>(<%=essay.prompt.school.name%>) <%=essay.prompt.content %>:
+          <p>
+          <% if essay.category == "Main Essay" %>
+            <strong>Main Essay</strong>
+          <% elsif essay.prompt %>
+            (<strong><%=essay.prompt.school.name%></strong>) <%=essay.prompt.content %>
           <% else %>
-            <p>(Prompt Not Available):
+            (Prompt Not Available)
           <% end %>
-          <%=link_to essay.title, essay_path(essay) %></p>
-          <p>Sentiment: <%=essay.sentiment%></p>
+          <br>
+          <%=link_to essay.title, essay_path(essay) %> | Sentiment: <%=essay.sentiment%></p>
         <% end %>
 
         <% if current_user.admin? %>
@@ -161,6 +164,7 @@
         <% end %>
       </div><!-- /.blog-post -->
     </div><!-- /.blog-main -->
+
     <div class="col-sm-4 col-sm-offset-1 blog-sidebar">
       <div class="sidebar-module sidebar-module-inset">
         <h5>Notes</h5>
