@@ -25,9 +25,9 @@ Application.create([
 
 #Create Schools
 School.create([
-  {name: "UCLA", country: "USA", category: "National University"},
-  {name: "USC", country: "USA", category: "National University"},
-  {name: "Stanford", country: "USA", category: "National University"},
+  {name: "UCLA", country: "USA", category: "US University"},
+  {name: "USC", country: "USA", category: "US University"},
+  {name: "Stanford", country: "USA", category: "US University"},
   {name: "Swarthmore", country: "USA", category: "Liberal Arts College"},
   {name: "Occidental", country: "USA", category: "Liberal Arts College"}
   ])

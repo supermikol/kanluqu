@@ -5,8 +5,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    # @schools = School.all.order("name")
-    @categories = School.all.group_by(&:category)
+    @categories = School.all.includes(:rankings).group_by(&:category)
   end
 
   # GET /schools/1
