@@ -10,14 +10,17 @@
     </thead>
 
     <tbody>
-      <% @schools.each do |school| %>
-        <tr>
-          <td><%= link_to "#{school.name}", school %></td>
-          <% if current_user.admin? %>
-          <td><%= link_to 'Edit', edit_school_path(school) %></td>
-          <td><%= link_to 'Destroy', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% @categories.each do |name,category| %>
+        <th><%=name%></th>
+          <% category.each do |school| %>
+            <tr>
+              <td><%= link_to "#{school.name}", school %></td>
+              <% if current_user.admin? %>
+              <td><%= link_to 'Edit', edit_school_path(school) %></td>
+              <td><%= link_to 'Destroy', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
       <% end %>
     </tbody>
   </table>
