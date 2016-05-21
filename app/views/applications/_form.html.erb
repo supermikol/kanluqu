@@ -25,7 +25,7 @@
   </div>
   <div>
     <%= f.label :zone %>
-    <%= f.select :zone, ['Mainland China', 'USA', 'Canada', 'Australia', 'UK', 'Hong Kong' 'Other'] %>
+    <%= f.select :zone, COUNTRIES %>
   </div>
   <div>
     <%= f.label :gender %>
@@ -45,7 +45,7 @@
   <%= f.fields_for :test_scores do |ff| %>
     <div>
       <%= ff.label :category %>
-      <%= ff.select :category, ['SAT', 'SAT Subject Test', 'ACT', 'AP', 'TOEFL', 'IB', 'Other'], include_blank: true %>
+      <%= ff.select :category, TESTS, include_blank: true %>
 
       <%= ff.label :subject %>
       <%= ff.text_field :subject %>

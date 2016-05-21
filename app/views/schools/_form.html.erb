@@ -18,7 +18,12 @@
 
   <div>
     <%= f.label :country %>
-    <%= f.text_field :country %>
+    <%= f.select :country, COUNTRIES, include_blank: true%>
+  </div>
+
+  <div>
+    <%= f.label :category %>
+    <%= f.select :category, ['National University', 'Liberal Arts College'], include_blank: true %>
   </div>
 
 

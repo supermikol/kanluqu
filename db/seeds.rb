@@ -16,20 +16,41 @@ user.save!
 
 
 #Create Applications
-app = Application.create(user_id: 1, student_name: "Joey", major: "Biology", location: "Shanghai", gender: "M", year: 2016, study_abroad: false, note: "This applicant lived in Japan")
-app = Application.create(user_id: 1, student_name: "Cindy", major: "CS", location: "Guangzhou", gender: "F", year: 2016, study_abroad: false)
+Application.create([
+  {user_id: 1, student_name: "Joey", major: "Biology", location: "Shanghai", zone: "Mainland China", gender: "M", year: 2016, study_abroad: false, note: "This applicant lived in Japan"},
+  {user_id: 1, student_name: "Cindy", major: "CS", location: "Guangzhou", zone: "Mainland China", gender: "F", year: 2016, study_abroad: false},
+  {user_id: 1, student_name: "David", major: "CS", location: "San Francisco", zone: "USA", gender: "M", year: 2016, study_abroad: true}
+
+  ])
 
 #Create Schools
-School.create([{name: "UCLA", country: "USA"}, {name: "USC", country: "USA"}, {name: "Stanford", country: "USA"}])
+School.create([
+  {name: "UCLA", country: "USA", category: "National University"},
+  {name: "USC", country: "USA", category: "National University"},
+  {name: "Stanford", country: "USA", category: "National University"},
+  {name: "Swarthmore", country: "USA", category: "Liberal Arts College"},
+  {name: "Occidental", country: "USA", category: "Liberal Arts College"}
+  ])
 
 #Create Prompts
-Prompt.create([{school_id: 1, content: "Tell us about yourself in 250 words or less", year: 2016}, {school_id: 2, content: "What matters to you?", year: 2016}, {school_id: 1, content: "Where's Waldo?", year: 2016}])
+Prompt.create([
+  {school_id: 1, content: "Tell us about yourself in 250 words or less", detail: "Make it funny!", year: 2016},
+  {school_id: 2, content: "What matters to you?", detail: "Anything that matters!", year: 2016},
+  {school_id: 1, content: "Where's Waldo?", year: 2016}
+  ])
 
 #Create Essays
-Essay.create([{application_id: 1, prompt_id: 1, category: "Main Essay", title: "My life and I", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.5},{application_id: 2, prompt_id: 3, category: "Supplement", title: "Waldo Lives", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.4},{application_id: 2, prompt_id: 2, category: "Supplement", title: "This matters", content: "hello this is the what matters essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.8}])
+Essay.create([
+  {application_id: 1, prompt_id: 1, category: "Main Essay", title: "My life and I", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.5},
+  {application_id: 2, prompt_id: 3, category: "Supplement", title: "Waldo Lives", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.4},
+  {application_id: 2, prompt_id: 2, category: "Supplement", title: "This matters", content: "hello this is the what matters essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.8}
+  ])
 
 #Create Test Scores
-TestScore.create([{application_id: 1, category: "AP", subject: "Calculus AB", score: 5, date: "05/15/2016"},{application_id: 1, category: "SAT", subject: "Math", score: 700, date: "05/01/2016"},{application_id: 2, category: "AP", subject: "Physics", score: 5, date: "05/10/2016"}])
+TestScore.create([{application_id: 1, category: "AP", subject: "Calculus AB", score: 5, date: "05/15/2016"},
+  {application_id: 1, category: "SAT", subject: "Math", score: 700, date: "05/01/2016"},
+  {application_id: 2, category: "AP", subject: "Physics", score: 5, date: "05/10/2016"}
+  ])
 
 #Create Extracurriculars
 Extracurricular.create(application_id: 1, name: "Global Leadership Program", category: "Summer Camp", position: "participant", description: "this was a pretty good summer camp", start_date: "05/01/2015", end_date: "05/30/2015")
