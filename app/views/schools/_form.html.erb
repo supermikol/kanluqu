@@ -18,7 +18,12 @@
 
   <div>
     <%= f.label :country %>
-    <%= f.text_field :country %>
+    <%= f.select :country, COUNTRIES, include_blank: true%>
+  </div>
+
+  <div>
+    <%= f.label :category %>
+    <%= f.select :category, SCHOOL_TYPES, include_blank: true %>
   </div>
 
 
@@ -43,6 +48,11 @@
     <div>
       <%= ff.label :content %>
       <%= ff.text_field :content %>
+
+      <div>
+        <%= ff.label :detail %>
+        <%= ff.text_area :detail %>
+      </div>
 
       <%= ff.label :year %>
       <%= ff.text_field :year %>

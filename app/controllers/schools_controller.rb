@@ -5,7 +5,7 @@ class SchoolsController < ApplicationController
   # GET /schools
   # GET /schools.json
   def index
-    @schools = School.all.order("name")
+    @categories = School.all.includes(:rankings).group_by(&:category)
   end
 
   # GET /schools/1
@@ -73,6 +73,6 @@ class SchoolsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def school_params
-      params.require(:school).permit(:_destroy, :name, :country, rankings_attributes: [:id, :_destroy, :rank,:year], prompts_attributes: [:id, :_destroy, :content, :year])
+      params.require(:school).permit(:_destroy, :name, :country, :category, rankings_attributes: [:id, :_destroy, :rank,:year], prompts_attributes: [:id, :_destroy, :content, :year, :detail])
     end
 end

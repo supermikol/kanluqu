@@ -1,3 +1,6 @@
+require 'net/http'
+require 'json'
+require 'cgi'
 class EssaysController < ApplicationController
   before_action :set_essay, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
@@ -22,6 +25,12 @@ class EssaysController < ApplicationController
 
   def create
     @essay = Essay.new(essay_params)
+    essay = CGI.escape(essay_params[:content])
+    url = "https://api.havenondemand.com/1/api/sync/analyzesentiment/v1?text=" + essay + "&apikey=" + API_KEYS[:haven_on_demand][:api]
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    json_response = JSON.parse(response)
+    @essay.sentiment = json_response['aggregate']['score'].round(3)
     @essay.application_id = params[:application_id]
     respond_to do |format|
       if @essay.save

@@ -1,29 +1,28 @@
 <p id="notice"><%= notice %></p>
 
 
-<div class="album text-muted">
   <div class="container">
+  <h3>
+    Applications
+    <% if current_user.admin? %>
+      <%= link_to 'Add Application', new_application_path, {class: "btn btn-primary", role: "button"} %>
+    <% end %>
+  </h3>
 
-  <% if current_user.admin? %>
-  <%= link_to 'New Application', new_application_path, {class: "btn btn-primary", role: "button"} %>
-  <% end %>
-    <div class="row">
       <% @applications.in_groups_of(3) do |app1, app2, app3| %>
         <div class="row">
           <!-- <div class="col-md-4"> -->
             <div class="card card-block">
-              <div class="card-title"><%= link_to "#{app1.student_name}#{app1.zone ? '(' + app1.zone + ')' : ''}, #{app1.location}, #{app1.year}", app1 %></div>
-              <% if app1.test_scores.find_by(category: "SAT") %>
+              <h5 class="card-title"><%= link_to "#{app1.student_name}, #{app1.location}, #{app1.year}", app1 %></h5>
               <p class="card-text">
                 Math: <%= app1.test_scores.find_by(category: "SAT", subject: "Math") ? app1.test_scores.find_by(category: "SAT", subject: "Math").score : "N/A" %>
                 CR: <%= app1.test_scores.find_by(category: "SAT", subject: "Critical Reading") ? app1.test_scores.find_by(category: "SAT", subject: "Critical Reading").score : "N/A" %>
                 Writing: <%= app1.test_scores.find_by(category: "SAT", subject: "Writing") ? app1.test_scores.find_by(category: "SAT", subject: "Writing").score : "N/A" %>
-              </p>
-              <% end %>
-              <p class="card-text">Schools:
+                <br>
                 <%= app1.schools.map{|school| school.name}.join(', ') %>
+                <br>
+                <%= app1.note %>
               </p>
-              <p class="card-text">Notes: <%= app1.note %> </p>
               <% if current_user.admin? %>
               <%= link_to 'Add Essay', new_application_essay_path(app1), {class: "btn btn-secondary", role: "button"} %>
               <%= link_to 'Edit', edit_application_path(app1), {class: "btn btn-secondary", role: "button"} %>
@@ -33,18 +32,16 @@
           <!-- </div> -->
           <% if app2 %>
           <div class="card card-block">
-              <div class="card-title"><%= link_to "#{app2.student_name}#{app2.zone ? '(' + app2.zone + ')' : ''}, #{app2.location}, #{app2.year}", app2 %></div>
-              <% if app2.test_scores.find_by(category: "SAT") %>
+              <h5 class="card-title"><%= link_to "#{app2.student_name}, #{app2.location}, #{app2.year}", app2 %></h5>
               <p class="card-text">
                 Math: <%= app2.test_scores.find_by(category: "SAT", subject: "Math") ? app2.test_scores.find_by(category: "SAT", subject: "Math").score : "N/A" %>
                 CR: <%= app2.test_scores.find_by(category: "SAT", subject: "Critical Reading") ? app2.test_scores.find_by(category: "SAT", subject: "Critical Reading").score : "N/A" %>
                 Writing: <%= app2.test_scores.find_by(category: "SAT", subject: "Writing") ? app2.test_scores.find_by(category: "SAT", subject: "Writing").score : "N/A" %>
-              </p>
-              <% end %>
-              <p class="card-text">Schools:
+                <br>
                 <%= app2.schools.map{|school| school.name}.join(', ') %>
+                <br>
+                <%= app2.note %>
               </p>
-              <p class="card-text">Notes: <%= app2.note %> </p>
               <% if current_user.admin? %>
               <%= link_to 'Add Essay', new_application_essay_path(app2), {class: "btn btn-secondary", role: "button"} %>
               <%= link_to 'Edit', edit_application_path(app2), {class: "btn btn-secondary", role: "button"} %>
@@ -54,18 +51,16 @@
          <% end %>
          <% if app3 %>
          <div class="card card-block">
-              <div class="card-title"><%= link_to "#{app3.student_name}#{app3.zone ? '(' + app3.zone + ')' : ''}, #{app3.location}, #{app3.year}", app3 %></div>
-              <% if app3.test_scores.find_by(category: "SAT") %>
+              <h5 class="card-title"><%= link_to "#{app3.student_name}, #{app3.location}, #{app3.year}", app3 %></h5>
               <p class="card-text">
                 Math: <%= app3.test_scores.find_by(category: "SAT", subject: "Math") ? app3.test_scores.find_by(category: "SAT", subject: "Math").score : "N/A" %>
                 CR: <%= app3.test_scores.find_by(category: "SAT", subject: "Critical Reading") ? app3.test_scores.find_by(category: "SAT", subject: "Critical Reading").score : "N/A" %>
                 Writing: <%= app3.test_scores.find_by(category: "SAT", subject: "Writing") ? app3.test_scores.find_by(category: "SAT", subject: "Writing").score : "N/A" %>
-              </p>
-              <% end %>
-              <p class="card-text">Schools:
+                <br>
                 <%= app3.schools.map{|school| school.name}.join(', ') %>
+                <br>
+                <%= app3.note %>
               </p>
-              <p class="card-text">Notes: <%= app3.note %> </p>
               <% if current_user.admin? %>
               <%= link_to 'Add Essay', new_application_essay_path(app3), {class: "btn btn-secondary", role: "button"} %>
               <%= link_to 'Edit', edit_application_path(app3), {class: "btn btn-secondary", role: "button"} %>
@@ -76,8 +71,4 @@
         </div>
       <% end %>
 
-    </div>
   </div>
-</div>
-<br>
-

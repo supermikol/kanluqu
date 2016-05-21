@@ -1,28 +1,51 @@
 <p id="notice"><%= notice %></p>
+  <div class="container">
 
-<h1>Listing Schools</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @schools.each do |school| %>
-      <tr>
-        <td><%= link_to "#{school.name}", school %></td>
-        <% if current_user.admin? %>
-        <td><%= link_to 'Edit', edit_school_path(school) %></td>
-        <td><%= link_to 'Destroy', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
+  <h3>
+    Schools
+    <% if current_user.admin? %>
+      <%= link_to 'Add School', new_school_path, {class: "btn btn-primary", role: "button"} %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-<% if current_user.admin? %>
-<%= link_to 'New school', new_school_path %>
-<% end %>
+  </h3>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <% @categories.each_with_index do |(name,category), index| %>
+      <thead>
+        <tr>
+          <th><%=name%></th>
+          <% if index == 0 %>
+          <th style="text-align:center">2016 Rank</th>
+          <th style="text-align:center">2015 Rank</th>
+          <th style="text-align:center">2014 Rank</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% category.each do |school| %>
+          <tr>
+            <td><%= link_to "#{school.name}", school %></td>
+            <td style="text-align:center">
+              <% if school.rankings.find_by(year: 2016)%>
+                <%= school.rankings.find_by(year: 2016).rank%>
+              <% end %>
+            </td>
+            <td style="text-align:center">
+              <% if school.rankings.find_by(year: 2015)%>
+                <%= school.rankings.find_by(year: 2015).rank%>
+              <% end %>
+            </td>
+            <td style="text-align:center">
+              <% if school.rankings.find_by(year: 2014)%>
+                <%= school.rankings.find_by(year: 2014).rank%>
+              <% end %>
+            </td>
+            <% if current_user.admin? %>
+            <td style="text-align:center"><%= link_to 'Edit', edit_school_path(school) %> <%= link_to 'Destroy', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+      <% end %>
+    </table>
+  </div>
+</div>

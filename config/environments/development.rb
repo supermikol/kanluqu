@@ -44,4 +44,7 @@ Rails.application.configure do
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
+  API_KEYS = {
+    'haven_on_demand': {"api": "4b212618-5f67-4f0d-b63a-45233c145396"}
+  }
 end
