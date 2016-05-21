@@ -29,7 +29,7 @@
   </div>
   <div>
     <%= f.label :gender %>
-    <%= f.text_field :gender %>
+    <%= f.select :gender, ['Unspecified', 'Female', 'Male'] %>
   </div>
   <div>
     <%= f.label :year %>
@@ -98,7 +98,7 @@
   <% end %>
 
   <h2>Schools</h2>
-  <%= f.fields_for :admits do |ff| %>
+  <%= f.fields_for :admits, f.object.admits.sort_by {|sch| sch.school.name } do |ff| %>
     <div>
       <%= ff.check_box :_destroy,
             {:checked => ff.object.persisted?},

@@ -17,7 +17,7 @@ module FormHelper
     (School.all - application.schools).each do |school|
       application.admits.build(:school => school)
     end
-    # application.admits.sort_by {|x| x.school.name }
+    # application.admits = application.admits.sort_by {|sch| sch.school.name }
     application
   end
 end
