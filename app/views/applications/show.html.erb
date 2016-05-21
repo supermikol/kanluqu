@@ -5,12 +5,15 @@
       <div class="blog-post">
         <h3 class="blog-title">
           <%= @application.student_name %>
-        <% if current_user.admin? %>
-          <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-info", role: "button" }%>
-        <% end %>
+          <% if current_user.admin? %>
+            <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-info", role: "button" }%>
+          <% end %>
         </h3>
         <p class="lead blog-description">
-          <%= @application.location %>, <%= @application.year %>, <% if @application.gender == 'm'%>Male<% else %>Female<% end %>
+          <%= @application.location %>, <%= @application.year %>
+          <% if @application.gender == 'Male' || @application.gender == 'Female' %>
+            , <%=@application.gender %>
+          <% end %>
           <br>
           Major: <%= @application.major %>
         </p>

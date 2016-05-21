@@ -17,13 +17,13 @@ user.save!
 
 #Create Applications
 Application.create([
-  {user_id: 1, student_name: "Joey", major: "Biology", location: "Shanghai", zone: "Mainland China", gender: "M", year: 2016, study_abroad: false, note: "This applicant lived in Japan"},
-  {user_id: 1, student_name: "Cindy", major: "Business", location: "Guangzhou", zone: "Mainland China", gender: "F", year: 2016, study_abroad: true},
-  {user_id: 1, student_name: "Jenny", major: "Finance", location: "Guangzhou", zone: "Mainland China", gender: "F", year: 2016, study_abroad: false},
-  {user_id: 1, student_name: "Cathy", major: "Mechanical Engineering", location: "Guangzhou", zone: "Mainland China", gender: "F", year: 2016, study_abroad: true},
-  {user_id: 1, student_name: "Deanna", major: "CS", location: "Guangzhou", zone: "Mainland China", gender: "F", year: 2015, study_abroad: false},
-  {user_id: 1, student_name: "Ryan", major: "Civil Engineering", location: "Guangzhou", zone: "Mainland China", gender: "M", year: 2015, study_abroad: true},
-  {user_id: 1, student_name: "David", major: "CS", location: "San Francisco", zone: "USA", gender: "M", year: 2015, study_abroad: true}
+  {user_id: 1, student_name: "Joey", major: "Biology", location: "Shanghai", zone: "Mainland China", gender: "Male", year: 2016, study_abroad: false, note: "This applicant lived in Japan"},
+  {user_id: 1, student_name: "Cindy", major: "Business", location: "Guangzhou", zone: "Mainland China", gender: "Female", year: 2016, study_abroad: true},
+  {user_id: 1, student_name: "Jenny", major: "Finance", location: "Guangzhou", zone: "Mainland China", gender: "Female", year: 2016, study_abroad: false},
+  {user_id: 1, student_name: "Cathy", major: "Mechanical Engineering", location: "Guangzhou", zone: "Mainland China", gender: "Female", year: 2016, study_abroad: true},
+  {user_id: 1, student_name: "Deanna", major: "CS", location: "Guangzhou", zone: "Mainland China", gender: "Female", year: 2015, study_abroad: false},
+  {user_id: 1, student_name: "Ryan", major: "Civil Engineering", location: "Guangzhou", zone: "Mainland China", gender: "Male", year: 2015, study_abroad: true},
+  {user_id: 1, student_name: "David", major: "CS", location: "San Francisco", zone: "USA", gender: "Male", year: 2015, study_abroad: true}
 
   ])
 
