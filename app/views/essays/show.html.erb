@@ -1,14 +1,21 @@
 <div class="blog-header">
   <div class="container">
     <p class="lead blog-description">
-      <strong><%= @essay.category %></strong>
-      <br>
-      <% if @essay.prompt %>
-        <%=@essay.prompt.school.name%>
+      <strong><% if @essay.category == "Main Essay" %>
+        Main Essay
+      <% elsif @essay.prompt %>
+        (<%=@essay.prompt.school.name%>)
         <%= @essay.prompt.content %>
       <% else %>
         Prompt Not Available
       <% end %>
+      </strong>
+      <% if current_user.admin? %>
+        <%= link_to 'Edit Essay', edit_essay_path(@essay), {class: "btn btn-info", role: "button" } %>
+      <% end %>
+      <br>
+      Sentiment: <%= @essay.sentiment %>
+
     </p>
   </div>
 </div>
@@ -20,15 +27,12 @@
     <div class="col-sm-8 blog-main">
 
       <div class="blog-post">
-        <p><%= @essay.title %></p>
+        <em><%= @essay.title %></em>
         <p><%= simple_format(@essay.content) %></p>
       </div><!-- /.blog-post -->
 
       <nav>
         <ul class="pager">
-          <% if current_user.admin? %>
-            <li><%= link_to 'Edit', edit_essay_path(@essay) %></li>
-          <% end %>
           <li><%= link_to "Return to #{@essay.application.student_name}'s Application", application_path(@essay.application) %></li>
         </ul>
       </nav>
