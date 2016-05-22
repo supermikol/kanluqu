@@ -8,4 +8,7 @@ class School < ActiveRecord::Base
   accepts_nested_attributes_for :rankings, :prompts,
     :allow_destroy => true,
     :reject_if     => :all_blank
+
+  validates :name, :category, presence: true
+  validates :name, uniqueness: true
 end

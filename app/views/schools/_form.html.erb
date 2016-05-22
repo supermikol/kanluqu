@@ -1,7 +1,7 @@
 <%= form_for(setup_school(@school)) do |f| %>
   <% if @school.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h2>
+    <div id="error_explanation" class="alert alert-warning">
+      <h4><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h4>
 
       <ul>
       <% @school.errors.full_messages.each do |message| %>
@@ -11,60 +11,89 @@
     </div>
   <% end %>
 
-  <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div>
-    <%= f.label :country %>
-    <%= f.select :country, COUNTRIES, include_blank: true%>
-  </div>
-
-  <div>
-    <%= f.label :category %>
-    <%= f.select :category, SCHOOL_TYPES, include_blank: true %>
-  </div>
-
-
-  <h2>Rankings</h2>
-  <%= f.fields_for :rankings do |ff| %>
-    <div>
-      <%= ff.label :rank %>
-      <%= ff.text_field :rank %>
-
-      <%= ff.label :year %>
-      <%= ff.text_field :year %>
-
-      <% if ff.object.persisted? %>
-        <%= ff.check_box :_destroy %>
-        <%= ff.label :_destroy, "Destroy" %>
-      <% end %>
-    </div>
-  <% end %>
-
-  <h2>Essay Prompts</h2>
-  <%= f.fields_for :prompts do |ff| %>
-    <div>
-      <%= ff.label :content %>
-      <%= ff.text_field :content %>
-
-      <div>
-        <%= ff.label :detail %>
-        <%= ff.text_area :detail %>
+  <div class="form-border">
+    <div class="row">
+      <div class="form-group col-lg-6">
+        <%= f.label :name, class: "form-control-label"  %>
+        <%= f.text_field :name, class: "form-control" %>
       </div>
 
-      <%= ff.label :year %>
-      <%= ff.text_field :year %>
+      <div class="form-group col-lg-3 col-md-6">
+        <%= f.label :category, class: "form-control-label"  %>
+        <%= f.select :category, SCHOOL_TYPES, {include_blank: 'Select Category...'}, {class: "form-control form-control-lg"}%>
+      </div>
 
-      <% if ff.object.persisted? %>
-        <%= ff.check_box :_destroy %>
-        <%= ff.label :_destroy, "Destroy" %>
-      <% end %>
+      <div class="form-group col-lg-3 col-md-6">
+        <%= f.label :country, class: "form-control-label"  %>
+        <%= f.select :country, COUNTRIES, {include_blank: 'Select Country...'}, {class: "form-control form-control-lg"}%>
+      </div>
     </div>
-  <% end %>
+  </div>
+
+  <div class="form-border">
+    <h4>Rankings</h4>
+    <div class="row">
+      <%= f.fields_for :rankings do |ff| %>
+
+        <div class="col-md-6 col-sm-12">
+
+          <div class="form-group col-md-4 col-sm-6">
+            <%= ff.label :year, class: "sr-only form-control-label" %>
+            <%= ff.select :year, YEARS, {include_blank: '(Year)'}, {class: "form-control form-control-lg"} %>
+          </div>
+
+          <div class="form-group col-md-3 col-sm-6">
+          <%= ff.label :rank, class: "sr-only" %>
+          <%= ff.text_field :rank, {class: "form-control", placeholder: "Rank"} %>
+          </div>
+
+          <% if ff.object.persisted? %>
+            <div class="form-group col-md-5 col-sm-6">
+                <%= ff.check_box :_destroy %>
+                <%= ff.label :_destroy, "Remove", class: "form-control-label" %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+        <hr>
+    </div>
+  </div>
+
+  <div class="form-border">
+
+    <h4>Essay Prompts</h4>
+    <%= f.fields_for :prompts do |ff| %>
+
+      <div class="row">
+
+        <div class="form-group col-lg-2">
+          <%= ff.label :year, class: "form-control-label" %>
+          <%= ff.select :year, YEARS, {include_blank: '(Select)'}, {class: "form-control form-control-lg"}  %>
+        </div>
+
+        <div class="form-group col-lg-10">
+          <%= ff.label :content, 'Prompt', class: "form-control-label" %>
+          <%= ff.text_field :content, class: "form-control" %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= ff.label :detail, 'Additional Info', class: "form-control-label" %>
+        <%= ff.text_area :detail, class: "form-control" %>
+      </div>
+
+        <% if ff.object.persisted? %>
+          <div class="form-group">
+              <%= ff.check_box :_destroy %>
+              <%= ff.label :_destroy, "Remove", class: "form-control-label" %>
+          </div>
+        <% end %>
+
+        <hr>
+    <% end %>
+  </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', class: "btn btn-success"%>
   </div>
 <% end %>

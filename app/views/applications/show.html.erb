@@ -20,7 +20,7 @@
           Major: <%= @application.major %>
         </p>
 
-      <div class="blog-post">
+      <div class="form-border">
         <h5 class="blog-post-title">Test Scores</h5>
         <table class="table table-striped table-sm">
           <% if @sat_scores.length > 0 %>
@@ -114,9 +114,9 @@
         </tbody>
         <% end %>
         </table>
-      </div><!-- /.blog-post -->
+      </div><!-- /.form-border -->
 
-      <div class="blog-post">
+      <div class="form-border">
         <h5 class="blog-post-title">Extracurriculars</h5>
         <p><em><strong><% if @application.study_abroad %>Student has studied abroad <% else %> Student has not studied abroad <% end %></strong></em></p>
 
@@ -145,9 +145,9 @@
             <% end %>
           </tbody>
         </table>
-      </div><!-- /.blog-post -->
+      </div><!-- /.form-border -->
 
-      <div class="blog-post">
+      <div class="form-border">
         <h5 class="blog-post-title">Essays</h5>
 
         <% @essays.each do |essay| %>
@@ -160,7 +160,7 @@
             (Prompt Not Available)
           <% end %>
           <br>
-          <%=link_to essay.title, essay_path(essay) %> | Sentiment: <%=essay.sentiment%></p>
+          <%=link_to (essay.title.length > 0 ? essay.title : "(No Title)"), essay_path(essay) %> | Sentiment: <%=essay.sentiment%></p>
         <% end %>
 
         <% if current_user.admin? %>
@@ -169,7 +169,7 @@
       </div><!-- /.blog-post -->
     </div><!-- /.blog-main -->
 
-    <div class="col-sm-4 col-sm-offset-1 blog-sidebar">
+    <div class="form-border col-sm-4 col-sm-offset-1 blog-sidebar">
       <div class="sidebar-module sidebar-module-inset">
         <h5>Notes</h5>
         <p>None</p>

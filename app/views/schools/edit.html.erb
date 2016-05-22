@@ -1,9 +1,6 @@
 <p></p>
 <div class="container">
-  <h1>Editing School</h1>
+  <h2>Editing School <%= link_to 'Back', schools_path, class: "btn btn-info btn-sm"%></h2>
 
   <%= render 'form' %>
-
-  <%= link_to 'Show', @school %> |
-  <%= link_to 'Back', schools_path %>
 </div>

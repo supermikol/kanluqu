@@ -1,8 +1,7 @@
 <%= form_for([@application, @essay], url: url, method: method) do |f| %>
   <% if @essay.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@essay.errors.count, "error") %> prohibited this essay from being saved:</h2>
-
+    <div id="error_explanation" class="alert alert-warning">
+      <h4><%= pluralize(@essay.errors.count, "error") %> prohibited this essay from being saved:</h4>
       <ul>
       <% @essay.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,28 +10,32 @@
     </div>
   <% end %>
 
-  <div>
-    <%= f.label :category %>
-    <%= f.select :category, ['Main Essay', 'Supplement', 'Writing Sample', 'Other'], include_blank: true %>
-  </div>
+  <div class="form-border">
+    <div class="row">
+      <div class="form-group col-md-3">
+        <%= f.label :category, class: "form-control-label sr-only" %>
+        <%= f.select :category, ['Main Essay', 'Supplement', 'Writing Sample', 'Other'], {include_blank: 'Select Category'}, {class: "form-control form-control-lg"} %>
+      </div>
 
-  <div>
-    <%= f.label :prompts, "Prompt" %>
-    <%= f.collection_select :prompt_id, @application.prompts, :id, :prompt_with_school, include_blank: true %>
-  </div>
+      <div class="form-group col-md-9">
+        <%= f.label :prompts, "Prompt", class: "form-control-label sr-only" %>
+        <%= f.collection_select :prompt_id, @application.prompts, :id, :prompt_with_school, {include_blank: 'Select Prompt (leave blank for main essay)'}, {class: "form-control form-control-lg"} %>
+      </div>
+    </div>
 
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
+    <div class="form-group">
+      <%= f.label :title, "Essay Title (Optional)", class: "form-control-label" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
 
 
-  <div>
-    <%= f.label :content %>
-    <%= f.text_area :content %>
+    <div>
+      <%= f.label :content, "Essay Content", class: "form-control-label" %>
+      <%= f.text_area :content, {class: "form-control", rows: 16} %>
+    </div>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', class: "btn btn-success" %>
   </div>
 <% end %>

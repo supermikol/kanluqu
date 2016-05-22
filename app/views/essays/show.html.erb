@@ -51,14 +51,16 @@
       </div>
       <br>
       <div class="sidebar-module">
-        <h6>Other essays with this prompt</h6>
-        <ol class="list-unstyled">
-          <% @prompt_essays.each do |essay| %>
-            <% unless essay == @essay %>
-              <li><%= link_to "#{essay.title}, #{essay.application.student_name}", essay_path(essay)%></li>
+        <% if @prompt_essays %>
+          <h6>Other essays with this prompt</h6>
+          <ol class="list-unstyled">
+            <% @prompt_essays.each do |essay| %>
+              <% unless essay == @essay %>
+                <li><%= link_to "#{essay.title}, #{essay.application.student_name}", essay_path(essay)%></li>
+              <% end %>
             <% end %>
-          <% end %>
-        </ol>
+          </ol>
+        <% end %>
       </div>
     </div><!-- /.blog-sidebar -->
 
