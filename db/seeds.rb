@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-us_universities = [["Princeton", 1], ["Harvard", 2], ["Yale", 3], ["Columbia", 4],["Chicago", 4],["Stanford", 4],["MIT", 7],["Duke", 8],["Cal Tech", 10],["University of Pennsylvania", 9],["JHU", 10] ,["Northwestern", 12],["Dartmouth", 12],["Washington University in St. Louis", 15],["Cornell", 15],["Brown", 14],["Notre Dame", 18],["Vanderbilt", 15],["Rice", 18],["UC Berkeley", 20],["Emory", 21],["Georgetown", 21],["UCLA", 23],["University of Virginia", 26],["Carnegie Mellon", 23],["USC", 23],["Wake Forest", 27],["Tufts", 27],["University of Michigan-Ann Arbor", 29],["University of North Carolina", 30],["Boston College", 30],["New York University", 32],["College of William and Mary", 34],["Rochester", 33],["Brandeis", 34],["Georgia Tech", 36]]
+us_universities = [["Princeton", 1], ["Harvard", 2], ["Yale", 3], ["Columbia", 4],["University of Chicago", 4],["Stanford", 4],["MIT", 7],["Duke", 8],["Cal Tech", 10],["University of Pennsylvania", 9],["Johns Hopkins", 10] ,["Northwestern", 12],["Dartmouth", 12],["Washington University in St. Louis", 15],["Cornell", 15],["Brown", 14],["Notre Dame", 18],["Vanderbilt", 15],["Rice", 18],["UC Berkeley", 20],["Emory", 21],["Georgetown", 21],["UCLA", 23],["University of Virginia", 26],["Carnegie Mellon", 23],["University of Southern California", 23],["Wake Forest", 27],["Tufts", 27],["University of Michigan - Ann Arbor", 29],["University of North Carolina", 30],["Boston College", 30],["New York University", 32],["College of William and Mary", 34],["Rochester", 33],["Brandeis", 34],["Georgia Tech", 36]]
 
 lacs = [["Williams", 1],["Amherst", 2],["Swarthmore", 3],["Pomona", 4],["Middlebury", 4],["Wellesley", 4],["Bowdoin", 4],["Carleton", 8],["Davidson", 9],["Haverford", 12],["Vassar", 12],["Claremont McKenna", 9],["Colby", 19],["Hamilton", 14],["Harvey Mudd", 14],["Wesleyan", 14],["Grinnell", 19],["Smith", 14],["Washington and Lee", 14],["Bates", 25],["Macalester", 23],["Colgate", 19],["Oberlin", 23],["Bryn Mawr", 25],["Colorado", 25],["University of Richmond", 32],["Bucknell", 32]]
 
@@ -23,13 +23,13 @@ user.save!
 
 #Create Applications
 Application.create([
-  {user_id: 1, student_name: "Joey", major: "Biology", location: "Shanghai", zone: "Mainland China", gender: "M", year: 2016, study_abroad: false, note: "This applicant lived in Japan"},
-  {user_id: 1, student_name: "Cindy", major: "Business", location: "Guangzhou", zone: "Mainland China", gender: "F", year: 2016, study_abroad: true},
-  {user_id: 1, student_name: "Jenny", major: "Finance", location: "Guangzhou", zone: "Mainland China", gender: "F", year: 2016, study_abroad: false},
-  {user_id: 1, student_name: "Cathy", major: "Mechanical Engineering", location: "Guangzhou", zone: "Mainland China", gender: "F", year: 2016, study_abroad: true},
-  {user_id: 1, student_name: "Deanna", major: "CS", location: "Guangzhou", zone: "Mainland China", gender: "F", year: 2015, study_abroad: false},
-  {user_id: 1, student_name: "Ryan", major: "Civil Engineering", location: "Guangzhou", zone: "Mainland China", gender: "M", year: 2015, study_abroad: true},
-  {user_id: 1, student_name: "David", major: "CS", location: "San Francisco", zone: "USA", gender: "M", year: 2015, study_abroad: true}
+  {user_id: 1, student_name: "Joey", major: "Biology", location: "Shanghai", zone: "Mainland China", gender: "Male", year: 2016, study_abroad: false, note: "This applicant lived in Japan"},
+  {user_id: 1, student_name: "Cindy", major: "Business", location: "Guangzhou", zone: "Mainland China", gender: "Female", year: 2016, study_abroad: true, note: "Member of National Olympiad Team in Chemistry"},
+  {user_id: 1, student_name: "Jenny", major: "Finance", location: "Guangzhou", zone: "Mainland China", gender: "Female", year: 2016, study_abroad: false, note: "Low income family"},
+  {user_id: 1, student_name: "Cathy", major: "Mechanical Engineering", location: "Guangzhou", zone: "Mainland China", gender: "Female", year: 2016, study_abroad: true},
+  {user_id: 1, student_name: "Deanna", major: "CS", location: "Guangzhou", zone: "Mainland China", gender: "Female", year: 2015, study_abroad: false},
+  {user_id: 1, student_name: "Ryan", major: "Civil Engineering", location: "Guangzhou", zone: "Mainland China", gender: "Male", year: 2015, study_abroad: true},
+  {user_id: 1, student_name: "David", major: "CS", location: "San Francisco", zone: "USA", gender: "Male", year: 2015, study_abroad: true}
 
   ])
 
@@ -45,9 +45,6 @@ lacs.each do |lac|
   school = School.create(name: lac[0], country: "USA", category: "Liberal Arts College")
   school.rankings << Ranking.create(rank:lac[1], year: 2016)
 end
-
-#Create Rankings
-Ranking.create([{school_id: 1, rank: 1, year: 2016},{school_id: 2, rank: 3, year: 2016},{school_id: 3, rank: 2, year: 2016}])
 
 #Create Prompts
 Prompt.create([

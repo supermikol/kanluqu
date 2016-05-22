@@ -1,5 +1,8 @@
-<h1>New Essay for <%= @application.student_name %></h1>
+<p></p>
+<div class="containter">
+  <h1>New Essay for <%= @application.student_name %></h1>
 
-<%= render partial: 'form', locals: {url: application_essays_path, method: :post} %>
+  <%= render partial: 'form', locals: {url: application_essays_path, method: :post} %>
 
-<%= link_to "Return to #{@application.student_name}'s Application", application_path(@application) %>
+  <%= link_to "Return to #{@application.student_name}'s Application", application_path(@application) %>
+</div>

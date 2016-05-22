@@ -1,3 +1,4 @@
+<p></p>
 <div class="blog-header">
   <div class="container">
     <p class="lead blog-description">
@@ -42,13 +43,21 @@
     <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
       <div class="sidebar-module sidebar-module-inset">
         <h6>Other essays from this student</h6>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+        <% @app_essays.each do |essay| %>
+          <% unless essay == @essay %>
+            <p><%= link_to essay.title, essay_path(essay)%></p>
+          <% end %>
+        <% end %>
       </div>
+      <br>
       <div class="sidebar-module">
         <h6>Other essays with this prompt</h6>
         <ol class="list-unstyled">
-          <li><a href="#">March 2014</a></li>
-          <li><a href="#">February 2014</a></li>
+          <% @prompt_essays.each do |essay| %>
+            <% unless essay == @essay %>
+              <li><%= link_to "#{essay.title}, #{essay.application.student_name}", essay_path(essay)%></li>
+            <% end %>
+          <% end %>
         </ol>
       </div>
     </div><!-- /.blog-sidebar -->

@@ -11,107 +11,145 @@
     </div>
   <% end %>
 
-  <div>
-    <%= f.label :student_name, "Student Name" %>
-    <%= f.text_field :student_name %>
-  </div>
-  <div>
-    <%= f.label :major %>
-    <%= f.text_field :major %>
-  </div>
-  <div>
-    <%= f.label :location, 'City' %>
-    <%= f.text_field :location %>
-  </div>
-  <div>
-    <%= f.label :zone %>
-    <%= f.select :zone, COUNTRIES %>
-  </div>
-  <div>
-    <%= f.label :gender %>
-    <%= f.text_field :gender %>
-  </div>
-  <div>
-    <%= f.label :year %>
-    <%= f.text_field :year %>
-  </div>
-
-  <div>
-    <%= f.label :note, "Additional Notes (Awards, Personal Circumstances):" %><br>
-    <%= f.text_area :note%>
-  </div>
-
-  <h2>Test Scores</h2>
-  <%= f.fields_for :test_scores do |ff| %>
-    <div>
-      <%= ff.label :category %>
-      <%= ff.select :category, TESTS, include_blank: true %>
-
-      <%= ff.label :subject %>
-      <%= ff.text_field :subject %>
-
-      <%= ff.label :score %>
-      <%= ff.number_field :score %>
-
-      <%= ff.label :date, 'Exam Date' %>
-      <%= ff.text_field :date %>
-
-      <% if ff.object.persisted? %>
-        <%= ff.check_box :_destroy %>
-        <%= ff.label :_destroy, "Destroy" %>
-      <% end %>
+  <div class="form-border">
+    <div class="form-group">
+      <%= f.label :student_name, "Student Name", class: "form-control-label" %>
+      <%= f.text_field :student_name, class: "form-control" %>
     </div>
-  <% end %>
-
-  <h2>Extracurriculars</h2>
-  <div>
-    <h5>
-    <%= f.label :study_abroad, "Study Abroad Experience" %>
-    <%= f.check_box :study_abroad %>
-    </h5>
+    <div class="form-inline">
+      <div class="form-group">
+        <%= f.label :gender, class: "form-control-label" %>
+        <%= f.select :gender, ['Unspecified', 'Female', 'Male'], class: "form-control", include_blank: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :zone, class: "form-control-label" %>
+        <%= f.select :zone, COUNTRIES, class: "form-control-label", include_blank: true %>
+      </div>
+      <div class="form-group">
+        <%= f.label :year, class: "form-control-label" %>
+        <%= f.select :year, YEARS, class: "form-control-label", include_blank: true %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <%= f.label :location, 'City', class: "form-control-label" %>
+        <%= f.text_field :location, class: "form-control"%>
+      </div>
+      <div class="form-group col-md-6">
+        <%= f.label :major, class: "form-control-label" %>
+        <%= f.text_field :major, class: "form-control" %>
+      </div class="form-group">
+    </div>
+    <div class="form-group">
+      <%= f.label :note, "Additional Notes (Awards, Personal Circumstances):", class: "form-control-label" %><br>
+      <%= f.text_area :note, class: "form-control col-md-8 col-xs-10"%>
+      <br>
+      <br>
+    </div>
   </div>
-  <%= f.fields_for :extracurriculars do |ff| %>
+
+
+  <div class="form-border">
+    <h4>Test Scores</h4>
+    <p>(For SAT scores, please enter <strong>Math</strong>, <strong>Critical Reading</strong>, or <strong>Writing</strong> for the subject)</p>
+    <%= f.fields_for :test_scores do |ff| %>
+
+      <%= ff.label :date, 'Date of Exam (Optional)', class: "form-control-label" %>
+      <%= ff.text_field :date, {placeholder: "YYYY-MM-DD"} %>
+
+      <div class="row">
+        <div class="form-group col-md-4">
+          <%= ff.label :category, class: "form-control-label" %>
+          <%= ff.select :category, TESTS, include_blank: true %>
+        </div>
+        <div class="form-group col-md-4">
+          <%= ff.label :subject, class: "form-control-label" %>
+          <%= ff.text_field :subject %>
+        </div>
+        <div class="form-group col-md-4">
+          <%= ff.label :score, class: "form-control-label" %>
+          <%= ff.number_field :score %>
+        </div>
+      </div>
+      <hr>
+
+        <% if ff.object.persisted? %>
+          <%= ff.check_box :_destroy %>
+          <%= ff.label :_destroy, "Destroy" %>
+        <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-border">
+    <h4>Extracurriculars</h4>
     <div>
-      <%= ff.label :name %>
-      <%= ff.text_field :name %>
-
-      <%= ff.label :category %>
-      <%= ff.select :category, ['School Club', 'Sport', 'Summer Camp', 'Volunteer', 'Internship', 'Work', 'Hobby', 'Other'], include_blank: true %>
-
-      <%= ff.label :position %>
-      <%= ff.text_field :position %>
-
-      <%= ff.label :description %>
-      <%= ff.text_area :description %>
-
-      <%= ff.label :start_date %>
-      <%= ff.text_field :start_date %>
-
-      <%= ff.label :end_date %>
-      <%= ff.text_field :end_date %>
-
-      <% if ff.object.persisted? %>
-        <%= ff.check_box :_destroy %>
-        <%= ff.label :_destroy, "Destroy" %>
-      <% end %>
+      <p>
+      <%= f.label :study_abroad, "Study Abroad Experience" %>
+      <%= f.check_box :study_abroad %>
+      </p>
     </div>
-  <% end %>
+    <%= f.fields_for :extracurriculars do |ff| %>
+      <div class="form-group">
+        <%= ff.label :category, class: "form-control-label" %>
+        <%= ff.select :category, ACTIVITIES, include_blank: true %>
 
-  <h2>Schools</h2>
-  <%= f.fields_for :admits do |ff| %>
-    <div>
-      <%= ff.check_box :_destroy,
-            {:checked => ff.object.persisted?},
-            '0', '1'
-      %>
-      <%= ff.label :_destroy, ff.object.school.name %>
+      <div class="row">
+        <div class="form-group col-md-6">
+          <%= ff.label :name, class: "form-control-label" %>
+          <%= ff.text_field :name %>
+        </div>
 
-      <%= ff.hidden_field :school_id %>
-    </div>
-  <% end %>
+        <div class="form-group col-md-6">
+          <%= ff.label :position, class: "form-control-label" %>
+          <%= ff.text_field :position %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6">
+          <%= ff.label :start_date, class: "form-control-label" %>
+          <%= ff.text_field :start_date, {placeholder: "YYYY-MM-DD"} %>
+        </div>
+
+        <div class="form-group col-md-6">
+          <%= ff.label :end_date, class: "form-control-label" %>
+          <%= ff.text_field :end_date, {placeholder: "YYYY-MM-DD"} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= ff.label :description, class: "form-control-label" %>
+        <%= ff.text_area :description, class: "form-control col-md-8 col-xs-10" %>
+        <br><br><br><br>
+      </div>
+
+      <div class="form-group">
+        <% if ff.object.persisted? %>
+          <%= ff.check_box :_destroy %>
+          <%= ff.label :_destroy, "Delete" %>
+        <% end %>
+      </div>
+      <hr>
+    <% end %>
+  </div>
+
+  <div class="form-border">
+    <h4>Schools</h4>
+    <%= f.fields_for :admits, f.object.admits.sort_by {|sch| sch.school.name } do |ff| %>
+      <div class="checklist">
+        <%= ff.check_box :_destroy,
+              {:checked => ff.object.persisted?},
+              '0', '1'
+        %>
+        <%= ff.label :_destroy, ff.object.school.name %>
+
+        <%= ff.hidden_field :school_id %>
+      </div>
+    <% end %>
+  </div>
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', class: "btn btn-success" %>
   </div>
 <% end %>

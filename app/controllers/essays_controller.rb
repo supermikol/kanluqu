@@ -11,7 +11,8 @@ class EssaysController < ApplicationController
   end
 
   def show
-
+    @app_essays = @essay.application.essays
+    @prompt_essays = @essay.prompt.essays
   end
 
   def new
