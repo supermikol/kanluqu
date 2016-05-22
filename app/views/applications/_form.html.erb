@@ -136,7 +136,7 @@
   <div class="form-border">
     <h4>Schools</h4>
     <%= f.fields_for :admits, f.object.admits.sort_by {|sch| sch.school.name } do |ff| %>
-      <div>
+      <div class="checklist">
         <%= ff.check_box :_destroy,
               {:checked => ff.object.persisted?},
               '0', '1'
@@ -150,6 +150,6 @@
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Submit', class: "btn btn-success" %>
   </div>
 <% end %>

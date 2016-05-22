@@ -1,3 +1,4 @@
+<p></p>
 <div class="container">
   <div class="row">
     <div class="col-sm-7 blog-main">
@@ -5,7 +6,7 @@
         <h3 class="blog-title">
           <%= @school.name %>
           <% if current_user.admin? %>
-            <%= link_to 'Edit School Info', edit_school_path(@school), {class: "btn btn-info", role: "button" }%>
+            <%= link_to 'Edit School Info', edit_school_path(@school), {class: "btn btn-info btn-sm", role: "button" }%>
           <% end %>
         </h3>
         <p class="lead blog-description">

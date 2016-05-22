@@ -5,7 +5,7 @@
         <h3 class="blog-title">
           <%= @application.student_name %>
           <% if current_user.admin? %>
-            <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-info", role: "button" }%>
+            <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-info btn-sm", role: "button" }%>
           <% end %>
         </h3>
       </div>
@@ -164,7 +164,7 @@
         <% end %>
 
         <% if current_user.admin? %>
-         <%= link_to 'Add Essay', new_application_essay_path(@application), {class: "btn btn-secondary", role: "button"} %>
+         <%= link_to 'Add Essay', new_application_essay_path(@application), {class: "btn btn-secondary btn-sm", role: "button"} %>
         <% end %>
       </div><!-- /.blog-post -->
     </div><!-- /.blog-main -->
