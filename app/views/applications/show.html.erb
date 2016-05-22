@@ -1,7 +1,6 @@
+<p></p>
 <div class="container">
 
-  <div class="row">
-    <div class="col-sm-7 blog-main">
       <div class="blog-post">
         <h3 class="blog-title">
           <%= @application.student_name %>
@@ -9,6 +8,9 @@
             <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-info", role: "button" }%>
           <% end %>
         </h3>
+      </div>
+  <div class="row">
+    <div class="col-sm-7 blog-main">
         <p class="lead blog-description">
           <%= @application.location %>, <%= @application.year %>
           <% if @application.gender == 'Male' || @application.gender == 'Female' %>
@@ -17,7 +19,6 @@
           <br>
           Major: <%= @application.major %>
         </p>
-      </div>
 
       <div class="blog-post">
         <h5 class="blog-post-title">Test Scores</h5>
