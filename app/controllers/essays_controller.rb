@@ -12,7 +12,9 @@ class EssaysController < ApplicationController
 
   def show
     @app_essays = @essay.application.essays
-    @prompt_essays = @essay.prompt.essays
+    if @essay.prompt
+      @prompt_essays = @essay.prompt.essays
+    end
   end
 
   def new
@@ -26,18 +28,21 @@ class EssaysController < ApplicationController
 
   def create
     @essay = Essay.new(essay_params)
-    essay = CGI.escape(essay_params[:content])
-    url = "https://api.havenondemand.com/1/api/sync/analyzesentiment/v1?text=" + essay + "&apikey=" + API_KEYS[:haven_on_demand][:api]
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    json_response = JSON.parse(response)
-    @essay.sentiment = json_response['aggregate']['score'].round(3)
-    @essay.application_id = params[:application_id]
+    if @essay.valid?
+      essay = CGI.escape(essay_params[:content])
+      url = "https://api.havenondemand.com/1/api/sync/analyzesentiment/v1?text=" + essay + "&apikey=" + API_KEYS[:haven_on_demand][:api]
+      uri = URI(url)
+      response = Net::HTTP.get(uri)
+      json_response = JSON.parse(response)
+      @essay.sentiment = json_response['aggregate']['score'].round(3)
+      @essay.application_id = params[:application_id]
+    end
     respond_to do |format|
       if @essay.save
         format.html { redirect_to @essay, notice: 'Essay was successfully created.' }
         format.json { render :show, status: :created, location: @essay }
       else
+        @application = Application.find(params[:application_id])
         format.html { render :new }
         format.json { render json: @essay.errors, status: :unprocessable_entity }
       end

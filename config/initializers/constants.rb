@@ -1,4 +1,4 @@
-COUNTRIES = ['Mainland China', 'USA', 'Canada', 'Australia', 'UK', 'Hong Kong' 'Other']
+COUNTRIES = ['USA', 'UK','Mainland China', 'Hong Kong', 'Canada', 'Australia', 'Other']
 TESTS = ['SAT', 'SAT Subject Test', 'ACT', 'AP', 'TOEFL', 'IB', 'Other']
 SCHOOL_TYPES = ['National University', 'Liberal Arts College', 'Chinese University', 'Other']
 YEARS = [2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020]

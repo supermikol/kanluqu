@@ -16,4 +16,5 @@ class Application < ActiveRecord::Base
   accepts_nested_attributes_for :admits,
     :allow_destroy => true
 
+  validates :student_name, presence: true
 end
