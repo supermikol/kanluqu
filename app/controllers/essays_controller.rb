@@ -30,7 +30,7 @@ class EssaysController < ApplicationController
     @essay = Essay.new(essay_params)
     if @essay.valid?
       essay = CGI.escape(essay_params[:content])
-      url = "https://api.havenondemand.com/1/api/sync/analyzesentiment/v1?text=" + essay + "&apikey=" + API_KEYS[:haven_on_demand][:api]
+      url = "https://api.havenondemand.com/1/api/sync/analyzesentiment/v1?text=" + essay + "&apikey=" + ENV["HAVEN_ON_DEMAND_KEY"]
       uri = URI(url)
       response = Net::HTTP.get(uri)
       json_response = JSON.parse(response)
