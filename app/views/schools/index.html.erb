@@ -36,7 +36,7 @@
               <% end %>
             </td>
             <% if current_user.admin? %>
-            <td style="text-align:center"><%= link_to 'Edit', edit_school_path(school) %> <%= link_to 'Delete', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td style="text-align:center"><%= link_to 'Edit', edit_school_path(school) %> | <%= link_to 'Delete', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
           </tr>
         <% end %>
