@@ -42,10 +42,12 @@
 
     <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
       <div class="sidebar-module sidebar-module-inset">
-        <h6>Other essays from this student</h6>
-        <% @app_essays.each do |essay| %>
-          <% unless essay == @essay %>
-            <p><%= link_to essay.title, essay_path(essay)%></p>
+        <% if @app_essays.length > 1 %>
+          <h6>Other essays from this student</h6>
+          <% @app_essays.each do |essay| %>
+            <% unless essay == @essay %>
+              <p><%=link_to (essay.title.length > 0 ? essay.title : "(No Title)"), essay_path(essay) %></p>
+            <% end %>
           <% end %>
         <% end %>
       </div>

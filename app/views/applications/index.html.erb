@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <div class="container">
     <% if current_user.admin? %>
       <%= link_to 'Add Application', new_application_path, {class: "btn btn-primary btn-sm", role: "button"} %>
