@@ -1,0 +1,31 @@
+nav {
+  background-color: #ACCFCC;
+}
+
+.nav-link {
+  border-radius: 5px;
+  padding: 0 10px 0 10px;
+}
+
+.navbar-nav .nav-item + .nav-item {
+  margin-left: 0.25em;
+}
+
+nav a {
+  color: #595241;
+}
+
+.nav-item a {
+  font-family: Arial;
+  color: #595241;
+}
+
+.nav-item a:hover {
+  background-color: #96B5B2;
+}
+
+@media (max-width:768px) {
+  .nav-link.nav-welcome {
+    display:none;
+  }
+}
