@@ -10,7 +10,7 @@ module FormHelper
   end
 
   def setup_application(application)
-    4.times do
+    5.times do
       application.test_scores.build
       application.extracurriculars.build
     end

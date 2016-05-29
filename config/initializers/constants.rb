@@ -1,5 +1,5 @@
 COUNTRIES = ['USA', 'UK','Mainland China', 'Hong Kong', 'Canada', 'Australia', 'Other']
 TESTS = ['SAT', 'SAT Subject Test', 'ACT', 'AP', 'TOEFL', 'IB', 'Other']
-SCHOOL_TYPES = ['National University', 'Liberal Arts College', 'Chinese University', 'Other']
+SCHOOL_TYPES = ['National University', 'Liberal Arts College', 'Other']
 YEARS = [2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020]
-ACTIVITIES = ['School Club', 'Sport', 'Summer Camp', 'Volunteer', 'Internship', 'Work', 'Hobby', 'Other']
+ACTIVITIES = ['Academic','Art/Music/Dance','Athletics','Career-Oriented','Community Service (Volunteer)','Computer/Technology','Cultural','Environmental','Foreign Exchange','Journalism','Research','Student Government','Theater/Drama','Work (Paid)','Other']
