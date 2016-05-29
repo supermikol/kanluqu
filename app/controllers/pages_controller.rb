@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  before_action :authenticate_admin, only: [:admin_index]
+  before_action :authenticate_admin, only: [:users_index, :new_users, :create_users, :edit_users, :update_users]
 
   def index
     @applications = Application.all
@@ -11,7 +11,20 @@ class PagesController < ApplicationController
     @ucb = School.find_by(name: "UC Berkeley")
   end
 
-  def admin_index
+  def users_index
+    @users = User.all
+  end
+
+  def new_users
+  end
+
+  def create_users
+  end
+
+  def edit_users
+  end
+
+  def update_users
   end
 
   private

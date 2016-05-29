@@ -55,10 +55,6 @@
     <h4>Test Scores</h4>
     <p>(For SAT scores, please enter <strong>Math</strong>, <strong>Critical Reading</strong>, or <strong>Writing</strong> for the subject)</p>
     <%= f.fields_for :test_scores do |ff| %>
-
-      <%= ff.label :date, 'Date of Exam (Optional)', class: "form-control-label" %>
-      <%= ff.text_field :date, {placeholder: "YYYY-MM-DD"} %>
-
       <div class="row">
         <div class="form-group col-md-6">
           <%= ff.label :category, class: "form-control-label" %>
@@ -112,13 +108,11 @@
 
       <div class="row">
         <div class="form-group col-md-6">
-          <%= ff.label :start_date, class: "form-control-label" %>
-          <%= ff.text_field :start_date, {placeholder: "YYYY-MM-DD"} %>
+          <%= ff.label :duration, class: "form-control-label" %>
+          <%= ff.text_field :duration, {placeholder: "No. of days"} %>
         </div>
 
         <div class="form-group col-md-6">
-          <%= ff.label :end_date, class: "form-control-label" %>
-          <%= ff.text_field :end_date, {placeholder: "YYYY-MM-DD"} %>
         </div>
       </div>
 

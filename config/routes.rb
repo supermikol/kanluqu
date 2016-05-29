@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   get 'pages/index'
+  get 'users/index' => 'pages#users_index'
+  get 'users/new' => 'pages#new_users'
+  get 'users/edit' => 'pages#edit_users'
+  post 'users/create' => 'pages#create_users'
+  patch 'users/update' => 'pages#update_users'
 
   devise_for :users
   resources :applications do

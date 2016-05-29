@@ -20,4 +20,5 @@ module FormHelper
     # application.admits = application.admits.sort_by {|sch| sch.school.name }
     application
   end
+
 end
