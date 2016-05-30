@@ -62,29 +62,29 @@ Essay.create([
 
 #Create Test Scores
 TestScore.create([
-  {application_id: 1, category: "AP", subject: "Calculus AB", score: 5, date: "05/15/2016"},
-  {application_id: 1, category: "SAT", subject: "Math", score: 800, date: "05/01/2016"},
-  {application_id: 1, category: "SAT", subject: "Writing", score: 730, date: "05/01/2016"},
-  {application_id: 1, category: "SAT", subject: "Critical Reading", score: 730, date: "05/01/2016"},
-  {application_id: 2, category: "SAT", subject: "Math", score: 780, date: "05/01/2016"},
-  {application_id: 2, category: "SAT", subject: "Writing", score: 760, date: "05/01/2016"},
-  {application_id: 2, category: "SAT", subject: "Critical Reading", score: 740, date: "05/01/2016"},
-  {application_id: 3, category: "SAT", subject: "Math", score: 760, date: "05/01/2016"},
-  {application_id: 3, category: "SAT", subject: "Writing", score: 710, date: "05/01/2016"},
-  {application_id: 3, category: "SAT", subject: "Critical Reading", score: 640, date: "05/01/2016"},
-  {application_id: 2, category: "AP", subject: "Physics", score: 5, date: "05/10/2016"},
-  {application_id: 3, category: "AP", subject: "Biology", score: 4, date: "05/10/2016"},
-  {application_id: 1, category: "AP", subject: "Computer Science", score: 4, date: "05/10/2016"},
-  {application_id: 2, category: "AP", subject: "English Literature", score: 3, date: "05/10/2016"}
+  {application_id: 1, category: "AP", subject: "Calculus AB", score: 5},
+  {application_id: 1, category: "SAT", subject: "Math", score: 800},
+  {application_id: 1, category: "SAT", subject: "Writing", score: 730},
+  {application_id: 1, category: "SAT", subject: "Critical Reading", score: 730},
+  {application_id: 2, category: "SAT", subject: "Math", score: 780},
+  {application_id: 2, category: "SAT", subject: "Writing", score: 760},
+  {application_id: 2, category: "SAT", subject: "Critical Reading", score: 740},
+  {application_id: 3, category: "SAT", subject: "Math", score: 760},
+  {application_id: 3, category: "SAT", subject: "Writing", score: 710},
+  {application_id: 3, category: "SAT", subject: "Critical Reading", score: 640},
+  {application_id: 2, category: "AP", subject: "Physics", score: 5},
+  {application_id: 3, category: "AP", subject: "Biology", score: 4},
+  {application_id: 1, category: "AP", subject: "Computer Science", score: 4},
+  {application_id: 2, category: "AP", subject: "English Literature", score: 3}
   ])
 
 #Create Extracurriculars
 Extracurricular.create([
-  {application_id: 1, name: "Global Leadership Program", category: "Summer Camp", position: "Participant", description: "This was a pretty good summer camp. I really liked the polar bears that slept ouside my tent.", start_date: "05/01/2015", end_date: "05/30/2015"},
-  {application_id: 1, name: "Global Leadership Program", category: "Summer Camp", position: "Participant", description: "This was a pretty good summer camp. I really liked the polar bears that slept ouside my tent.", start_date: "05/01/2015", end_date: "05/30/2015"},
-  {application_id: 2, name: "Global Leadership Program", category: "Summer Camp", position: "Participant", description: "This was a pretty good summer camp. I really liked the polar bears that slept ouside my tent.", start_date: "05/01/2015", end_date: "05/30/2015"},
-  {application_id: 2, name: "Global Leadership Program", category: "Summer Camp", position: "Participant", description: "This was a pretty good summer camp. I really liked the polar bears that slept ouside my tent.", start_date: "05/01/2015", end_date: "05/30/2015"},
-  {application_id: 3, name: "Global Leadership Program", category: "Summer Camp", position: "Participant", description: "This was a pretty good summer camp. I really liked the polar bears that slept ouside my tent.", start_date: "05/01/2015", end_date: "05/30/2015"}
+  {application_id: 1, name: "Global Leadership Program", category: "Summer Camp", position: "Participant", description: "This was a pretty good summer camp. I really liked the polar bears that slept ouside my tent.", duration: 15},
+  {application_id: 1, name: "Global Leadership Program", category: "Summer Camp", position: "Participant", description: "This was a pretty good summer camp. I really liked the polar bears that slept ouside my tent.", duration: 25},
+  {application_id: 2, name: "Global Leadership Program", category: "Summer Camp", position: "Participant", description: "This was a pretty good summer camp. I really liked the polar bears that slept ouside my tent.", duration: 35},
+  {application_id: 2, name: "Global Leadership Program", category: "Summer Camp", position: "Participant", description: "This was a pretty good summer camp. I really liked the polar bears that slept ouside my tent.", duration: 10},
+  {application_id: 3, name: "Global Leadership Program", category: "Summer Camp", position: "Participant", description: "This was a pretty good summer camp. I really liked the polar bears that slept ouside my tent.", duration: 5}
     ])
 
 

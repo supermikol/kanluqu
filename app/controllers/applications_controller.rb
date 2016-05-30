@@ -7,6 +7,7 @@ class ApplicationsController < ApplicationController
   # GET /applications.json
   def index
     @applications = Application.all.includes(:schools, :test_scores)
+
   end
 
   # GET /applications/1
@@ -69,7 +70,7 @@ class ApplicationsController < ApplicationController
   def destroy
     @application.destroy
     respond_to do |format|
-      format.html { redirect_to applications_url, notice: 'Application was successfully destroyed.' }
+      format.html { redirect_to applications_url, notice: 'Application was successfully deleted.' }
       format.json { head :no_content }
     end
   end

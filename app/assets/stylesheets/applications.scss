@@ -2,3 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.app-nav {
+  margin-top: 15px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  border: 1px solid black;
+  min-height: 350px;
+}
