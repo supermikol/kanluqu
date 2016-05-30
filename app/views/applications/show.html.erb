@@ -1,16 +1,15 @@
 <p></p>
 <div class="container">
-
-      <div class="blog-post">
-        <h3 class="blog-title">
-          <%= @application.student_name %>
-          <% if current_user.admin? %>
-            <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-info btn-sm", role: "button" }%>
-          <% end %>
-        </h3>
-      </div>
+  <div class="blog-post">
+    <h3 class="blog-title">
+      <%= @application.student_name %>
+      <% if current_user.admin? %>
+        <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-info btn-sm", role: "button" }%>
+      <% end %>
+    </h3>
+  </div>
   <div class="row">
-    <div class="col-sm-7 blog-main">
+    <div class="col-sm-8 blog-main">
         <p class="lead blog-description">
           <%= @application.location %>, <%= @application.year %>
           <% if @application.gender == 'Male' || @application.gender == 'Female' %>
@@ -126,8 +125,7 @@
               <th>Type</th>
               <th>Name</th>
               <th>Position</th>
-              <th>Start</th>
-              <th>End</th>
+              <th>Duration(in days)</th>
             </tr>
           </thead>
           <tbody>
@@ -136,8 +134,7 @@
               <td><%= ec.category %></td>
               <td><%= ec.name %></td>
               <td><%= ec.position %></td>
-              <td><%= ec.start_date %></td>
-              <td><%= ec.end_date %></td>
+              <td><%= ec.duration %></td>
             </tr>
             <tr>
               <td colspan="5">Details: <%= ec.description %></td>
@@ -160,7 +157,7 @@
             (Prompt Not Available)
           <% end %>
           <br>
-          <%=link_to (essay.title.length > 0 ? essay.title : "(No Title)"), essay_path(essay) %> | Sentiment: <%=essay.sentiment%></p>
+          <%=link_to (essay.title.length > 0 ? essay.title : "(Untitled)"), essay_path(essay) %> | Sentiment: <%=essay.sentiment%></p>
         <% end %>
 
         <% if current_user.admin? %>
@@ -169,7 +166,7 @@
       </div><!-- /.blog-post -->
     </div><!-- /.blog-main -->
 
-    <div class="form-border col-sm-4 col-sm-offset-1 blog-sidebar">
+    <div class="form-border col-sm-4 blog-sidebar">
       <div class="sidebar-module sidebar-module-inset">
         <h5>Notes</h5>
         <p>None</p>
@@ -183,12 +180,9 @@
         </ol>
       </div>
     </div><!-- /.blog-sidebar -->
-
   </div><!-- /.row -->
-  <nav>
-    <ul class="pager">
-      <li><%= link_to 'Return to Applications', applications_path %></li>
-    </ul>
-  </nav>
+  <ul class="pager">
+    <li><%= link_to 'Return to Applications', applications_path %></li>
+  </ul>
 
 </div><!-- /.container -->

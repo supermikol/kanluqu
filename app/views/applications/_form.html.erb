@@ -56,25 +56,23 @@
     <p>(For SAT scores, please enter <strong>Math</strong>, <strong>Critical Reading</strong>, or <strong>Writing</strong> for the subject)</p>
     <%= f.fields_for :test_scores do |ff| %>
       <div class="row">
-        <div class="form-group col-md-6">
-          <%= ff.label :category, class: "form-control-label" %>
-          <%= ff.select :category, TESTS, {include_blank: 'Select...'}, {class: "form-control form-control-lg"} %>
+        <div class="form-group col-md-4">
+          <%= ff.select :category, TESTS, {include_blank: '(Select Category...)'}, {class: "form-control form-control-lg"} %>
         </div>
         <div class="form-group col-md-3">
-          <%= ff.label :subject, class: "form-control-label" %>
-          <%= ff.text_field :subject %>
+          <%= ff.text_field :subject, {class: "form-control", placeholder: "Enter Subject.."} %>
         </div>
         <div class="form-group col-md-3">
-          <%= ff.label :score, class: "form-control-label" %>
-          <%= ff.number_field :score %>
+          <%= ff.number_field :score, {class: "form-control", placeholder: "Enter Score.."} %>
+        </div>
+        <div class="form-group col-md-2">
+          <% if ff.object.persisted? %>
+            <%= ff.check_box :_destroy %>
+            <%= ff.label :_destroy, "Remove" %>
+          <% end %>
         </div>
       </div>
       <hr>
-
-        <% if ff.object.persisted? %>
-          <%= ff.check_box :_destroy %>
-          <%= ff.label :_destroy, "Destroy" %>
-        <% end %>
     <% end %>
   </div>
 
@@ -82,50 +80,37 @@
     <h4>Extracurriculars</h4>
     <div>
       <p>
-      <%= f.label :study_abroad, "Study Abroad Experience" %>
+      <%= f.label :study_abroad, "Does student have study abroad experience?" %>
       <%= f.check_box :study_abroad %>
       </p>
     </div>
     <%= f.fields_for :extracurriculars do |ff| %>
-
       <div class="row">
-
-        <div class="form-group col-lg-4">
-          <%= ff.label :category, class: "sr-only form-control-label" %>
-          <%= ff.select :category, ACTIVITIES, {include_blank: 'Category...'}, {class: "form-control form-control-lg"} %>
+        <div class="form-group col-lg-3 col-md-6">
+          <%= ff.select :category, ACTIVITIES, {include_blank: '(Select Category...)'}, {class: "form-control form-control-lg"} %>
         </div>
 
-        <div class="form-group col-lg-4 col-md-6">
-          <%= ff.label :name, class: "form-control-label" %>
-          <%= ff.text_field :name %>
+        <div class="form-group col-lg-3 col-md-6">
+          <%= ff.text_field :name, {class: "form-control"} %>
         </div>
 
-        <div class="form-group col-lg-4 col-md-6">
-          <%= ff.label :position, class: "form-control-label" %>
-          <%= ff.text_field :position %>
+        <div class="form-group col-lg-3 col-md-6">
+          <%= ff.text_field :position, {class: "form-control"} %>
+        </div>
+
+        <div class="form-group col-lg-3 col-md-6">
+          <%= ff.text_field :duration, {class: "form-control", placeholder: "No. of days"} %>
         </div>
       </div>
-
-      <div class="row">
-        <div class="form-group col-md-6">
-          <%= ff.label :duration, class: "form-control-label" %>
-          <%= ff.text_field :duration, {placeholder: "No. of days"} %>
-        </div>
-
-        <div class="form-group col-md-6">
-        </div>
-      </div>
-
       <div class="form-group">
         <%= ff.label :description, class: "form-control-label" %>
         <%= ff.text_area :description, class: "form-control col-md-8 col-xs-10" %>
-        <br><br><br><br>
       </div>
-
+      <br>
       <div class="form-group">
         <% if ff.object.persisted? %>
           <%= ff.check_box :_destroy %>
-          <%= ff.label :_destroy, "Delete" %>
+          <%= ff.label :_destroy, "Remove" %>
         <% end %>
       </div>
       <hr>

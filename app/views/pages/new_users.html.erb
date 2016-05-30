@@ -1,0 +1,42 @@
+<p>
+  <% if @errors %>
+    <ul>
+      <% @errors.each do |err| %>
+        <li><%= "User #{err[0]+1}: #{err[1]}" %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</p>
+<div class="container">
+  <h3>Add Users</h3>
+  <%= form_tag(users_create_path) do |f|%>
+    <div class="row">
+      <% @new_users.each do |new_user| %>
+        <%= fields_for "users[]", new_user do |ff| %>
+          <div class="col-md-11">
+            <div class="row">
+              <div class="form-group col-lg-3 col-sm-6">
+                <%= ff.text_field :full_name, {class: "form-control", placeholder: "Full Name"} %>
+              </div>
+              <div class="form-group col-lg-3 col-sm-6">
+                <%= ff.text_field :email, {class: "form-control", placeholder: "Email"} %>
+              </div>
+              <div class="form-group col-lg-3 col-sm-6">
+                <%= ff.password_field :password, {class: "form-control", placeholder: "Password"} %>
+              </div>
+              <div class="form-group col-lg-3 col-sm-6">
+                <%= ff.password_field :password_confirmation, {class: "form-control", placeholder: "Confirm Password"} %>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-1 form-group">
+            <%= ff.check_box :admin %>Admin
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="actions">
+      <%= submit_tag 'Submit', class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>
