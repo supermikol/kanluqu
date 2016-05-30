@@ -1,49 +1,37 @@
 <p></p>
 <div class="blog-header">
-  <div class="container">
-    <p class="lead blog-description">
-      <strong><% if @essay.category == "Main Essay" %>
-        Main Essay
-      <% elsif @essay.prompt %>
-        (<%=@essay.prompt.school.name%>)
-        <%= @essay.prompt.content %>
-      <% else %>
-        Prompt Not Available
-      <% end %>
-      </strong>
-      <% if current_user.admin? %>
-        <%= link_to 'Edit Essay', edit_essay_path(@essay), {class: "btn btn-info", role: "button" } %>
-      <% end %>
-      <br>
-      Sentiment: <%= @essay.sentiment %>
-
-    </p>
-  </div>
-</div>
-
-<div class="container">
+  <p class="lead blog-description">
+    <strong><% if @essay.category == "Main Essay" %>
+      Main Essay
+    <% elsif @essay.prompt %>
+      <%=link_to @essay.prompt.school.name, school_path(@essay.prompt.school) %>: <%= @essay.prompt.content %>
+    <% else %>
+      Prompt Not Available
+    <% end %>
+    </strong>
+    <% if current_user.admin? %>
+      <%= link_to 'Edit Essay', edit_essay_path(@essay), {class: "btn btn-info", role: "button" } %>
+    <% end %>
+    <br>
+    Sentiment: <%= @essay.sentiment %>
+  </p>
 
   <div class="row">
-
     <div class="col-sm-8 blog-main">
-
       <div class="blog-post">
         <em><%= @essay.title %></em>
         <p><%= simple_format(@essay.content) %></p>
       </div><!-- /.blog-post -->
 
-      <nav>
-        <ul class="pager">
-          <li><%= link_to "Return to #{@essay.application.student_name}'s Application", application_path(@essay.application) %></li>
-        </ul>
-      </nav>
-
+      <ul class="pager">
+        <li><%= link_to "Return to #{@essay.application.student_name}'s Application", application_path(@essay.application) %></li>
+      </ul>
     </div><!-- /.blog-main -->
 
-    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+    <div class="col-sm-3 col-sm-offset-1 blog-sidebar  form-border">
       <div class="sidebar-module sidebar-module-inset">
         <% if @app_essays.length > 1 %>
-          <h6>Other essays from this student</h6>
+          <h6 style="text-decoration: underline;">Other essays from this student</h6>
           <% @app_essays.each do |essay| %>
             <% unless essay == @essay %>
               <p><%=link_to (essay.title.length > 0 ? essay.title : "(No Title)"), essay_path(essay) %></p>
@@ -54,7 +42,7 @@
       <br>
       <div class="sidebar-module">
         <% if @prompt_essays %>
-          <h6>Other essays with this prompt</h6>
+          <h6 style="text-decoration: underline;">Other essays with this prompt</h6>
           <ol class="list-unstyled">
             <% @prompt_essays.each do |essay| %>
               <% unless essay == @essay %>
