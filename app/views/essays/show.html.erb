@@ -1,5 +1,5 @@
 <p></p>
-<div class="blog-header">
+<div class="blog-header container">
   <p class="lead blog-description">
     <strong><% if @essay.category == "Main Essay" %>
       Main Essay
@@ -28,7 +28,7 @@
       </ul>
     </div><!-- /.blog-main -->
 
-    <div class="col-sm-3 col-sm-offset-1 blog-sidebar  form-border">
+    <div class="col-sm-3 blog-sidebar  form-border">
       <div class="sidebar-module sidebar-module-inset">
         <% if @app_essays.length > 1 %>
           <h6 style="text-decoration: underline;">Other essays from this student</h6>
@@ -40,18 +40,18 @@
         <% end %>
       </div>
       <br>
-      <div class="sidebar-module">
-        <% if @prompt_essays %>
-          <h6 style="text-decoration: underline;">Other essays with this prompt</h6>
-          <ol class="list-unstyled">
-            <% @prompt_essays.each do |essay| %>
-              <% unless essay == @essay %>
-                <li><%= link_to "#{essay.title}, #{essay.application.student_name}", essay_path(essay)%></li>
+      <% if @prompt_essays && @prompt_essays.length > 1 %>
+        <div class="sidebar-module">
+            <h6 style="text-decoration: underline;">Other essays with this prompt</h6>
+            <ol class="list-unstyled">
+              <% @prompt_essays.each do |essay| %>
+                <% unless essay == @essay %>
+                  <li><%= link_to "#{essay.title}, #{essay.application.student_name}", essay_path(essay)%></li>
+                <% end %>
               <% end %>
-            <% end %>
-          </ol>
-        <% end %>
-      </div>
+            </ol>
+        </div>
+      <% end %>
     </div><!-- /.blog-sidebar -->
 
   </div><!-- /.row -->
