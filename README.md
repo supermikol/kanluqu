@@ -1,5 +1,7 @@
 # kanluqu
 Web-app for students to share their college application essays.
+Deployment: kanluqu.herokuapp.com
+Please contact me for test login credentials
 
 ### Ruby version
 2.2.4
@@ -9,11 +11,8 @@ Web-app for students to share their college application essays.
 ### Configuration
 
 ### Database creation
+rake db:create
 
 ### Database initialization
-
-### How to run the test suite
-
-### Services (job queues, cache servers, search engines, etc.)
-
-### Deployment instructions
+rake db:migrate
+rake db:seed
