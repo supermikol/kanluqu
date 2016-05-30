@@ -1,7 +1,8 @@
 <nav class="navbar">
-  <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#navbar-header" aria-controls="navbar-header">
+  <button class="navbar-toggler hidden-sm-up pull-xs-right" type="button" data-toggle="collapse" data-target="#navbar-header">
     &#9776;
   </button>
+
   <%= link_to("看录取", root_path, class: 'navbar-brand') %>
   <div class="collapse navbar-toggleable-xs" id="navbar-header">
     <ul class="nav navbar-nav">
@@ -16,7 +17,7 @@
       </li>
     </ul>
 
-    <ul class="nav navbar-nav pull-xs-right">
+    <ul class="nav navbar-nav pull-lg-right">
       <% if user_signed_in? %>
         <% if current_user.admin? %>
           <li class="nav-item">
@@ -34,7 +35,6 @@
       <% else %>
         <li><%= link_to 'Log In', new_user_session_path, class: 'nav-link' %></li>
       <% end %>
-
     </ul>
   </div>
 </nav> <!-- /navbar -->

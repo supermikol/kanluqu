@@ -1,5 +1,19 @@
 nav {
-  background-color: #ACCFCC;
+  background-color: #E2F0D6;
+}
+
+nav.navbar {
+  border-radius: 0 0 5px 5px;
+}
+
+#navbar-header {
+  margin-top: 12px;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  color: #10222B ;
+  padding-left: 10px;
 }
 
 .nav-link {
@@ -24,8 +38,26 @@ nav a {
   background-color: #96B5B2;
 }
 
-@media (max-width:768px) {
+@media (max-width:767px) {
   .nav-link.nav-welcome {
     display:none;
+  }
+
+  .navbar-brand {
+    width: 20%;
+    margin-left: 40%;
+    float: none;
+    text-align: center;
+  }
+}
+
+@media (max-width:543px) {
+  .navbar-nav .nav-item {
+    display: block;
+    float: none;
+  }
+
+  .navbar-nav {
+    left: 0px;
   }
 }
