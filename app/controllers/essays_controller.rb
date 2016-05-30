@@ -1,37 +1,48 @@
+require 'net/http'
+require 'json'
+require 'cgi'
 class EssaysController < ApplicationController
   before_action :set_essay, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-
-  # GET /essays
-  # GET /essays.json
+  before_action :authenticate_admin, except: [:show, :index]
   def index
-    @essays = Essay.all
+    @application = Application.find(params[:application_id])
+    @essays = @application.essays.all
   end
 
-  # GET /essays/1
-  # GET /essays/1.json
   def show
+    @app_essays = @essay.application.essays
+    if @essay.prompt
+      @prompt_essays = @essay.prompt.essays
+    end
   end
 
-  # GET /essays/new
   def new
+    @application = Application.find(params[:application_id])
     @essay = Essay.new
   end
 
-  # GET /essays/1/edit
   def edit
+    @application = @essay.application
   end
 
-  # POST /essays
-  # POST /essays.json
   def create
     @essay = Essay.new(essay_params)
-
+    if @essay.valid?
+      essay = CGI.escape(essay_params[:content])
+      url = "https://api.havenondemand.com/1/api/sync/analyzesentiment/v1?text=" + essay + "&apikey=" + ENV["HAVEN_ON_DEMAND_KEY"]
+      uri = URI(url)
+      response = Net::HTTP.get(uri)
+      json_response = JSON.parse(response)
+      @essay.sentiment = json_response['aggregate']['score'].round(3)
+      @essay.application_id = params[:application_id]
+    end
     respond_to do |format|
       if @essay.save
         format.html { redirect_to @essay, notice: 'Essay was successfully created.' }
         format.json { render :show, status: :created, location: @essay }
       else
+        @application = Application.find(params[:application_id])
         format.html { render :new }
         format.json { render json: @essay.errors, status: :unprocessable_entity }
       end
@@ -55,9 +66,10 @@ class EssaysController < ApplicationController
   # DELETE /essays/1
   # DELETE /essays/1.json
   def destroy
+    application = @essay.application
     @essay.destroy
     respond_to do |format|
-      format.html { redirect_to essays_url, notice: 'Essay was successfully destroyed.' }
+      format.html { redirect_to application_essays_url(application), notice: 'Essay was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +82,6 @@ class EssaysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def essay_params
-      params[:essay]
+      params.require(:essay).permit(:application_id, :prompt_id, :category, :content, :title)
     end
 end

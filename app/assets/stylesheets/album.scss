@@ -1,12 +1,8 @@
-body {
-}
-
 .navbar {
   margin-bottom: 0;
 }
 
 .navbar .container-fluid {
-
   display: flex;
   align-items: center;
 }
@@ -43,8 +39,8 @@ body {
 }
 
 .jumbotron {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   margin-bottom: 0;
   background-color: #fff;
 }
@@ -54,7 +50,7 @@ body {
 }
 
 .jumbotron-heading {
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .jumbotron .container {
@@ -69,10 +65,10 @@ body {
 
 .card {
   float: left;
-  width: 33.333%;
   padding: .75rem;
   margin-bottom: 2rem;
   border: 0;
+  height: 14em;
 }
 
 .card > img {
@@ -80,14 +76,6 @@ body {
 }
 
 .card-text {
-  font-size: 85%;
+  font-size: 92%;
 }
 
-footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-}
-
-footer p {
-  margin-bottom: .25rem;
-}

@@ -1,9 +1,19 @@
 Rails.application.routes.draw do
   get 'pages/index'
+  get 'users/index' => 'pages#users_index'
+  get 'users/new' => 'pages#new_users'
+  get 'users/edit' => 'pages#edit_users'
+  post 'users/create' => 'pages#create_users'
+  patch 'users/update' => 'pages#update_users'
 
   devise_for :users
-  resources :essays
-  resources :applications
+  resources :applications do
+    resources :essays, shallow: true
+  end
+  resources :schools do
+    resources :prompts, shallow: true
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,57 +1,44 @@
+
 <% if !user_signed_in? %>
   <section class="jumbotron text-xs-center">
-    <div class="container">
       <h1 class="jumbotron-heading">Welcome!</h1>
-      <p class="lead text-muted">Register to get started.</p>
+      <p class="lead">Login to get started.</p>
       <p>
         <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary btn-lg' %>
       </p>
-    </div>
   </section>
 <% end %>
-<div class="album text-muted">
-  <div class="container">
+<div class="container main-index">
 
-    <div class="row">
-      <div class="card">
-        <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-      <div class="card">
-        <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-      <div class="card">
-        <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-
-      <div class="card">
-        <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-      <div class="card">
-        <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-      <div class="card">
-        <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-
-      <div class="card">
-        <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-      <div class="card">
-        <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
-      <div class="card">
-        <img data-src="holder.js/100px280/thumb" alt="Card image cap">
-        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-      </div>
+  <div class="mini-nav row">
+    <div class="col-lg-4 school-label">
+      <div class="school_unit nowrap"><strong>Schools</strong></div>
     </div>
-
+    <div class="col-lg-8">
+      <div class="school_unit nowrap"><%= link_to "UCLA", school_path(@ucla) %></div>
+      <div class="school_unit nowrap"><%= link_to "Stanford", school_path(@stanford) %></div>
+      <div class="school_unit nowrap"><%= link_to "USC", school_path(@usc) %></div>
+      <div class="school_unit nowrap"><%= link_to "MIT", school_path(@mit) %></div>
+      <div class="school_unit nowrap"><%= link_to "UC Berkeley", school_path(@ucb) %></div>
+      <div class="school_unit nowrap"><strong><%= link_to "More Schools", schools_path%></strong></div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <h5>Latest Additions:</h5>
+    <% @applications.each do |app| %>
+        <div class="main-app">
+          <p class="app-header"><%= link_to "#{app.student_name}, #{app.location}, #{app.year}", app %></p>
+          <p>
+            Math: <%= app.test_scores.find_by(category: "SAT", subject: "Math") ? app.test_scores.find_by(category: "SAT", subject: "Math").score : "N/A" %>
+            CR: <%= app.test_scores.find_by(category: "SAT", subject: "Critical Reading") ? app.test_scores.find_by(category: "SAT", subject: "Critical Reading").score : "N/A" %>
+            Writing: <%= app.test_scores.find_by(category: "SAT", subject: "Writing") ? app.test_scores.find_by(category: "SAT", subject: "Writing").score : "N/A" %>
+            <br>
+            <strong>Applied for:</strong> <%= app.schools.map{|school| school.name}.join(', ') %>
+            <br>
+            <em><%= app.note %></em>
+          </p>
+        </div>
+    <% end %>
   </div>
 </div>

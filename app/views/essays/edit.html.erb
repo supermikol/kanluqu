@@ -1,6 +1,8 @@
-<h1>Editing Essay</h1>
+<p></p>
+<div class="container">
+  <h3>Editing Essay <%= link_to "Return to #{@application.student_name}'s Application", application_path(@application), class: "btn btn-info btn-sm" %></h3>
 
-<%= render 'form' %>
+  <%= render partial: 'form', locals: {url: essay_path, method: :patch} %>
 
-<%= link_to 'Show', @essay %> |
-<%= link_to 'Back', essays_path %>
+
+</div>

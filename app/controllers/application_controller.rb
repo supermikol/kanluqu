@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :full_name
     devise_parameter_sanitizer.for(:account_update) << :full_name
   end
+
+  def authenticate_admin
+    redirect_to(root_path, notice: 'Sorry, you are not authorized to view the page.') unless current_user && current_user.admin?
+  end
 end

@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160509041646) do
+ActiveRecord::Schema.define(version: 20160529084124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admits", force: :cascade do |t|
+    t.integer  "school_id"
+    t.integer  "application_id"
+    t.boolean  "admitted"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "applications", force: :cascade do |t|
     t.integer  "user_id"
@@ -26,6 +34,8 @@ ActiveRecord::Schema.define(version: 20160509041646) do
     t.boolean  "study_abroad"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.text     "note"
+    t.string   "zone"
   end
 
   add_index "applications", ["user_id"], name: "index_applications_on_user_id", using: :btree
@@ -37,6 +47,8 @@ ActiveRecord::Schema.define(version: 20160509041646) do
     t.text     "content"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "title"
+    t.float    "sentiment"
   end
 
   add_index "essays", ["application_id"], name: "index_essays_on_application_id", using: :btree
@@ -47,10 +59,10 @@ ActiveRecord::Schema.define(version: 20160509041646) do
     t.string   "name"
     t.string   "category"
     t.string   "position"
-    t.date     "start_date"
-    t.date     "end_date"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.text     "description"
+    t.integer  "duration"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -69,6 +81,7 @@ ActiveRecord::Schema.define(version: 20160509041646) do
     t.integer  "year"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text     "detail"
   end
 
   create_table "rankings", force: :cascade do |t|
@@ -84,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160509041646) do
     t.string   "country"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "category"
   end
 
   create_table "test_scores", force: :cascade do |t|
@@ -91,7 +105,6 @@ ActiveRecord::Schema.define(version: 20160509041646) do
     t.string   "category"
     t.string   "subject"
     t.integer  "score"
-    t.date     "date"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -118,6 +131,7 @@ ActiveRecord::Schema.define(version: 20160509041646) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.boolean  "admin",                  default: false
+    t.boolean  "contributor",            default: false
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

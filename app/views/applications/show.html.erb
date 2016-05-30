@@ -1,4 +1,188 @@
-<p id="notice"><%= notice %></p>
+<p></p>
+<div class="container">
+  <div class="blog-post">
+    <h3 class="blog-title">
+      <%= @application.student_name %>
+      <% if current_user.admin? %>
+        <%= link_to 'Edit Application Details', edit_application_path(@application), {class: "btn btn-info btn-sm", role: "button" }%>
+      <% end %>
+    </h3>
+  </div>
+  <div class="row">
+    <div class="col-sm-8 blog-main">
+        <p class="lead blog-description">
+          <%= @application.location %>, <%= @application.year %>
+          <% if @application.gender == 'Male' || @application.gender == 'Female' %>
+            , <%=@application.gender %>
+          <% end %>
+          <br>
+          Major: <%= @application.major %>
+        </p>
 
-<%= link_to 'Edit', edit_application_path(@application) %> |
-<%= link_to 'Back', applications_path %>
+      <div class="form-border">
+        <h5 class="blog-post-title">Test Scores</h5>
+        <table class="table table-striped table-sm">
+          <% if @sat_scores.length > 0 %>
+          <thead>
+            <tr><th colspan="2">SAT</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <% @sat_scores.each do |sc| %>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+              <% end %>
+            </tr>
+          </tbody>
+          <% end %>
+          <% if @act_scores.length > 0 %>
+          <thead>
+            <tr><th colspan="2">ACT</th></tr>
+          </thead>
+          <tbody>
+            <% @act_scores.each do |sc| %>
+            <tr>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+            </tr>
+            <% end %>
+          </tbody>
+          <% end %>
+          <% if @sat_subject_scores.length > 0 %>
+          <thead>
+            <tr><th colspan="2">SAT Subject Tests</th></tr>
+          </thead>
+          <tbody>
+            <% @sat_subject_scores.each do |sc| %>
+            <tr>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+            </tr>
+            <% end %>
+          </tbody>
+          <% end %>
+          <% if @toefl_scores.length > 0 %>
+          <thead>
+            <tr><th colspan="2">TOEFL</th></tr>
+          </thead>
+          <tbody>
+            <% @toefl_scores.each do |sc| %>
+            <tr>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+            </tr>
+            <% end %>
+          </tbody>
+          <% end %>
+          <% if @ap_scores.length > 0 %>
+          <thead>
+            <tr><th colspan="2">AP</th></tr>
+          </thead>
+          <tbody>
+            <% @ap_scores.each do |sc| %>
+            <tr>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+            </tr>
+            <% end %>
+          </tbody>
+          <% end %>
+          <% if @ib_scores.length > 0 %>
+          <thead>
+            <tr><th colspan="2">IB</th></tr>
+          </thead>
+          <tbody>
+            <% @ib_scores.each do |sc| %>
+            <tr>
+              <td><%= sc.subject %></td>
+              <td><%= sc.score %></td>
+            </tr>
+            <% end %>
+          </tbody>
+          <% end %>
+          <% if @other_scores.length > 0 %>
+          <tr><th colspan="2">Other</th></tr>
+        </thead>
+        <tbody>
+          <% @other_scores.each do |sc| %>
+          <tr>
+            <td><%= sc.subject %></td>
+            <td><%= sc.score %></td>
+          </tr>
+          <% end %>
+        </tbody>
+        <% end %>
+        </table>
+      </div><!-- /.form-border -->
+
+      <div class="form-border">
+        <h5 class="blog-post-title">Extracurriculars</h5>
+        <p><em><strong><% if @application.study_abroad %>Student has studied abroad <% else %> Student has not studied abroad <% end %></strong></em></p>
+
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Name</th>
+              <th>Position</th>
+              <th>Duration(in days)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @extracurriculars.each do |ec| %>
+            <tr>
+              <td><%= ec.category %></td>
+              <td><%= ec.name %></td>
+              <td><%= ec.position %></td>
+              <td><%= ec.duration %></td>
+            </tr>
+            <tr>
+              <td colspan="5">Details: <%= ec.description %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div><!-- /.form-border -->
+
+      <div class="form-border">
+        <h5 class="blog-post-title">Essays</h5>
+
+        <% @essays.each do |essay| %>
+          <p>
+          <% if essay.category == "Main Essay" %>
+            <strong>Main Essay</strong>
+          <% elsif essay.prompt %>
+            (<strong><%=essay.prompt.school.name%></strong>) <%=essay.prompt.content %>
+          <% else %>
+            (Prompt Not Available)
+          <% end %>
+          <br>
+          <%=link_to (essay.title.length > 0 ? essay.title : "(Untitled)"), essay_path(essay) %> | Sentiment: <%=essay.sentiment%></p>
+        <% end %>
+
+        <% if current_user.admin? %>
+         <%= link_to 'Add Essay', new_application_essay_path(@application), {class: "btn btn-secondary btn-sm", role: "button"} %>
+        <% end %>
+      </div><!-- /.blog-post -->
+    </div><!-- /.blog-main -->
+
+    <div class="form-border col-sm-4 blog-sidebar">
+      <div class="sidebar-module sidebar-module-inset">
+        <h5>Notes</h5>
+        <p>None</p>
+      </div>
+      <div class="sidebar-module">
+        <h5>Schools Applied For</h5>
+        <ol class="list-unstyled">
+          <% @schools.each do |school| %>
+          <li><a href="#"><%= link_to "#{school.name}, #{school.country}", school_path(school) %></a></li>
+          <% end %>
+        </ol>
+      </div>
+    </div><!-- /.blog-sidebar -->
+  </div><!-- /.row -->
+  <ul class="pager">
+    <li><%= link_to 'Return to Applications', applications_path %></li>
+  </ul>
+
+</div><!-- /.container -->

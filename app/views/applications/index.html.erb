@@ -1,25 +1,37 @@
-<p id="notice"><%= notice %></p>
+<p></p>
+<div class="container">
+  <% if current_user.admin? %>
+    <%= link_to 'Add Application', new_application_path, {class: "btn btn-primary btn-sm pull-right", role: "button"} %>
+  <% end %>
+  <div class="row">
+    <div class="col-md-3 app-nav">
+      Filter Box Goes Here
+      <form>
+        Search(Non-functional yet):
+        <input>
+      </form>
+    </div> <!-- end app-nav -->
+    <div class="col-md-9">
+      <% @applications.each do |app| %>
+        <div class="main-app">
+          <p class="app-header"><%= link_to "#{app.student_name}, #{app.location}, #{app.year}", app %></p>
+          <p>
+            Math: <%= app.test_scores.find_by(category: "SAT", subject: "Math") ? app.test_scores.find_by(category: "SAT", subject: "Math").score : "N/A" %>
+            CR: <%= app.test_scores.find_by(category: "SAT", subject: "Critical Reading") ? app.test_scores.find_by(category: "SAT", subject: "Critical Reading").score : "N/A" %>
+            Writing: <%= app.test_scores.find_by(category: "SAT", subject: "Writing") ? app.test_scores.find_by(category: "SAT", subject: "Writing").score : "N/A" %>
+            <br>
+            <strong>Applied for:</strong> <%= app.schools.map{|school| school.name}.join(', ') %>
+            <br>
+            <em><%= app.note %></em>
+          </p>
+          <% if current_user.admin? %>
+            <%= link_to 'Add Essay', new_application_essay_path(app), {class: "btn btn-secondary btn-sm", role: "button"} %>
+            <%= link_to 'Edit', edit_application_path(app), {class: "btn btn-secondary btn-sm", role: "button"} %>
+            <%= link_to 'Delete', app, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm", role: "button"} %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
 
-<h1>Listing Applications</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @applications.each do |application| %>
-      <tr>
-        <td><%= link_to 'Show', application %></td>
-        <td><%= link_to 'Edit', edit_application_path(application) %></td>
-        <td><%= link_to 'Destroy', application, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Application', new_application_path %>
+  </div>
+</div>
