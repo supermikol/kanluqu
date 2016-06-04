@@ -18,4 +18,4 @@ rake db:migrate
 rake db:seed
 
 ### Schema
-<img src="https://github.com/supermikol/kanluqu/blob/master/schema.png" width="450">
+<img src="https://github.com/supermikol/kanluqu/blob/master/schema.png" width="650">
