@@ -18,4 +18,4 @@ rake db:migrate
 rake db:seed
 
 ### Schema
-![Schema Design](schema.png "Schema Design")
+![Schema Design](schema.png "Schema Design" =250x)
