@@ -16,3 +16,6 @@ rake db:create
 ### Database initialization
 rake db:migrate
 rake db:seed
+
+### Schema
+![Schema Design](https://github.com/supermikol/kanluqu/schema.png "Schema Design")
