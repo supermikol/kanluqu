@@ -18,4 +18,5 @@ rake db:migrate
 rake db:seed
 
 ### Schema
-![Schema Design](schema.png  =250x "Schema Design")
+![Schema Design](schema.png =250x "Schema Design")
+<img src="https://github.com/supermikol/kanluqu/blob/master/schema.png" width="150">
