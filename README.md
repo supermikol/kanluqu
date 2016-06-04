@@ -18,4 +18,4 @@ rake db:migrate
 rake db:seed
 
 ### Schema
-![Schema Design](https://github.com/supermikol/kanluqu/schema.png "Schema Design")
+![Schema Design](/kanluqu/schema.png "Schema Design")
