@@ -1,6 +1,6 @@
 # kanluqu
 - Web-app for students to share their college application essays.
-- Deployment: kanluqu.herokuapp.com
+- Deployment: [kanluqu.herokuapp.com](http://kanluqu.herokuapp.com/)
 - Please contact me for test login credentials
 
 ### Ruby version
