@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>看录取网</title>
+  <title>Kanluqu</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div id="overlay"></div>
+  <div id="about-modal">
+    <h2 class="modal-title">About Kanluqu</h2>
+    <p>Welcome to Kanluqu! This is a site to help students navigate the intimidating college application process. Whether you're looking for inspiration from other student's essays, gauging your own stats against other students who have been admitted to your dream school, or are just getting started and would like to get a better feel for a complete college application, I hope this site will help.</p>
+    <p>To start, simply click on '<strong>Applications</strong>' to see our list of applications, or under '<strong>Schools</strong>', choose a school you're interested in to find a list of all applicants who have applied for that school. Good luck!</p>
+    </div>
   <div class="container">
   <%= render "layouts/navbar" %>
 
