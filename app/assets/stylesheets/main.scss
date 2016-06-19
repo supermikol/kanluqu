@@ -11,3 +11,33 @@ footer {
   background-color: #F5F5F5;
 }
 
+#overlay{
+  display:none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.7); /*dim the background*/
+}
+
+#about-modal {
+  overflow-y: scroll;
+  top: 20%;
+  left: 20%;
+  height: 60%;
+  width: 60%;
+  position:fixed;
+  display: none;
+  border-radius:8px;
+  background-color: $color2;
+  border: 2px solid $color3;
+  z-index: 11;
+  padding: 3%;
+  color: $color5;
+}
+
+#about-modal .title {
+
+}

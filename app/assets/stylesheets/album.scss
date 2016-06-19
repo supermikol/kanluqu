@@ -13,11 +13,11 @@
 }
 
 .navbar-collapse h4 {
-  color: #818a91;
+  color: $color1;
 }
 
 .navbar-collapse .text-muted {
-  color: #818a91;
+  color: $color1;
 }
 
 .navbar-brand img{
@@ -32,7 +32,7 @@
 
 .social a {
   font-weight: 500;
-  color: #eceeef;
+  color: $color2;
 }
 .social a:hover {
   color: #fff;

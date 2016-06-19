@@ -31,7 +31,13 @@ hr {
   display: table-cell;
   height: 2em;
   padding: 0 5px 0 5px;
+  color: $color1;
 }
+
+.home-header {
+  color: $color5;
+}
+
 
 @media(max-width: 991px) {
   .school-label {

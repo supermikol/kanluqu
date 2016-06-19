@@ -3,7 +3,7 @@
     &#9776;
   </button>
 
-  <%= link_to("看录取", root_path, class: 'navbar-brand') %>
+  <%= link_to("Kanluqu", root_path, class: 'navbar-brand') %>
   <div class="collapse navbar-toggleable-xs" id="navbar-header">
     <ul class="nav navbar-nav">
       <li class="nav-item">
@@ -12,29 +12,28 @@
       <li class="nav-item">
         <%= link_to "Schools", schools_path, class: 'nav-link' %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Favorites", root_path, class: 'nav-link' %>
-      </li>
     </ul>
 
     <ul class="nav navbar-nav pull-lg-right">
-      <% if user_signed_in? %>
-        <% if current_user.admin? %>
-          <li class="nav-item">
-            <%= link_to 'User Admin', users_index_path, class: 'nav-link' %>
-          </li>
-        <% else %>
-          <li class="nav-item">
-            <div class="nav-link nav-welcome">Welcome, <%= current_user.full_name %></div>
-          <span class="sr-only">(current)</span>
-          </li>
-        <% end %>
       <li class="nav-item">
-        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+        <%= link_to "About Kanluqu", "/#", {class: 'nav-link', id: 'about-click'} %>
       </li>
+      <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.full_name %> <%= image_tag "glyphicons-115-list.png", height: "17px"%></a>
+            <div class="dropdown-menu">
+              <%= link_to "Favorites", root_path, class: 'nav-link' %>
+              <% if current_user.admin? %>
+                <%= link_to 'User Admin', users_index_path, class: 'nav-link' %>
+              <% end %>
+              <div class="dropdown-divider"></div>
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, class: 'nav-link' %>
+            </div>
+          </li>
       <% else %>
         <li><%= link_to 'Log In', new_user_session_path, class: 'nav-link' %></li>
       <% end %>
+
     </ul>
   </div>
 </nav> <!-- /navbar -->

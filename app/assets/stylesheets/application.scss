@@ -11,6 +11,14 @@
  * file per style scope.
  *
  */
+
+$color1: #468966;
+$color2: #FFF0A5;
+$color2hover: #F5E199;
+$color3: #FFB03B;
+$color4: #B64926;
+$color5: #8E2800;
+
 @import "bootstrap";
 @import "album";
 @import "forms";
@@ -19,7 +27,6 @@
 @import "pages";
 @import "navbar";
 @import "applications";
-
 
 .alert-alert {
   @extend .alert-warning;

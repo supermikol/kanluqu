@@ -25,7 +25,7 @@
   </div>
   <hr>
   <div class="row">
-    <h5>Latest Additions:</h5>
+    <h5 class="home-header">Latest Additions:</h5>
     <% @applications.each do |app| %>
         <div class="main-app">
           <p class="app-header"><%= link_to "#{app.student_name}, #{app.location}, #{app.year}", app %></p>
