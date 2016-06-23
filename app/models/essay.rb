@@ -3,4 +3,5 @@ class Essay < ActiveRecord::Base
   belongs_to :application
   belongs_to :prompt
   validates :content, presence: true
+  validates :category, presence: true
 end

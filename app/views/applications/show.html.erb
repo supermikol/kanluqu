@@ -154,7 +154,7 @@
               <% elsif essay.prompt %>
                 <strong><%=essay.prompt.school.name%>:</strong> <%=link_to essay.prompt.content, essay_path(essay) %>
               <% else %>
-                <%=link_to "(Prompt Not Available)", essay_path(essay) %>
+                <%=link_to essay.category, essay_path(essay) %>
               <% end %>
           | Sentiment: <%=essay.sentiment%> |
           <%= link_to "Delete", essay_path(essay), method: :delete, data: {confirm: "Are you sure?"} %>
