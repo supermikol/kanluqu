@@ -1,19 +1,21 @@
 <p></p>
 <div class="blog-header container">
-  <p class="lead blog-description">
-    <strong><% if @essay.category == "Main Essay" %>
-      Main Essay
-    <% elsif @essay.prompt %>
-      <%=link_to @essay.prompt.school.name, school_path(@essay.prompt.school) %>: <%= @essay.prompt.content %>
-    <% else %>
-      Prompt Not Available
-    <% end %>
-    </strong>
+  <p>
+    <div class="lead blog-description">
+      <strong><% if @essay.category == "Main Essay" %>
+        Main Essay
+      <% elsif @essay.prompt %>
+        <%=link_to @essay.prompt.school.name, school_path(@essay.prompt.school) %>: <%= @essay.prompt.content %>
+      <% else %>
+        <%= @essay.category %>
+      <% end %>
+      </strong>
+      Sentiment: <%= @essay.sentiment %>
+    </div>
     <% if current_user.admin? %>
-      <%= link_to 'Edit Essay', edit_essay_path(@essay), {class: "btn btn-info", role: "button" } %>
+      <%= link_to 'Edit', edit_essay_path(@essay) %> |
+      <%= link_to "Delete", essay_path(@essay), method: :delete, data: {confirm: "Are you sure?"} %>
     <% end %>
-    <br>
-    Sentiment: <%= @essay.sentiment %>
   </p>
 
   <div class="row">
@@ -33,8 +35,12 @@
         <% if @app_essays.length > 1 %>
           <h6 style="text-decoration: underline;">Other essays from this student</h6>
           <% @app_essays.each do |essay| %>
-            <% unless essay == @essay %>
+            <% if essay != @essay && essay.prompt %>
               <p><%=link_to essay.prompt.content, essay_path(essay) %></p>
+              <hr>
+            <% elsif essay != @essay %>
+              <p><%=link_to essay.category, essay_path(essay) %></p>
+              <hr>
             <% end %>
           <% end %>
         <% end %>
