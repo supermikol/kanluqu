@@ -57,6 +57,8 @@ Prompt.create([
 Essay.create([
   {application_id: 1, prompt_id: 1, category: "Main Essay", title: "My life and I", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.5},
   {application_id: 2, prompt_id: 3, category: "Supplement", title: "Waldo Lives", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.4},
+  {application_id: 1, prompt_id: 3, category: "Supplement", title: "Waldo Lives", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.4},
+  {application_id: 3, prompt_id: 3, category: "Supplement", title: "Waldo Lives", content: "hello this is an essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.4},
   {application_id: 2, prompt_id: 2, category: "Supplement", title: "This matters", content: "hello this is the what matters essay. \nThis essay is about some cool stuff.\n Check it out", sentiment: 0.8}
   ])
 
