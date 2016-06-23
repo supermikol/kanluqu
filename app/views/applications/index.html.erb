@@ -20,7 +20,7 @@
             CR: <%= app.test_scores.find_by(category: "SAT", subject: "Critical Reading") ? app.test_scores.find_by(category: "SAT", subject: "Critical Reading").score : "N/A" %>
             Writing: <%= app.test_scores.find_by(category: "SAT", subject: "Writing") ? app.test_scores.find_by(category: "SAT", subject: "Writing").score : "N/A" %>
             <br>
-            <strong>Applied for:</strong> <%= app.schools.map{|school| school.name}.join(', ') %>
+            <strong>Acceptances:</strong> <%= app.schools.map{|school| school.name}.join(', ') %>
             <br>
             <em><%= app.note %></em>
           </p>

@@ -34,7 +34,7 @@
           <h6 style="text-decoration: underline;">Other essays from this student</h6>
           <% @app_essays.each do |essay| %>
             <% unless essay == @essay %>
-              <p><%=link_to (essay.title.length > 0 ? essay.title : "(No Title)"), essay_path(essay) %></p>
+              <p><%=link_to essay.prompt.content, essay_path(essay) %></p>
             <% end %>
           <% end %>
         <% end %>
@@ -42,11 +42,11 @@
       <br>
       <% if @prompt_essays && @prompt_essays.length > 1 %>
         <div class="sidebar-module">
-            <h6 style="text-decoration: underline;">Other essays with this prompt</h6>
+            <h6 style="text-decoration: underline;">This essay from other students</h6>
             <ol class="list-unstyled">
               <% @prompt_essays.each do |essay| %>
                 <% unless essay == @essay %>
-                  <li><%= link_to "#{essay.title}, #{essay.application.student_name}", essay_path(essay)%></li>
+                  <li><%= link_to "#{essay.application.student_name}", essay_path(essay)%></li>
                 <% end %>
               <% end %>
             </ol>

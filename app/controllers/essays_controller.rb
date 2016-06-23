@@ -39,7 +39,7 @@ class EssaysController < ApplicationController
     end
     respond_to do |format|
       if @essay.save
-        format.html { redirect_to @essay, notice: 'Essay was successfully created.' }
+        format.html { redirect_to @essay, notice: 'Essay was successfully added.' }
         format.json { render :show, status: :created, location: @essay }
       else
         @application = Application.find(params[:application_id])
@@ -69,7 +69,7 @@ class EssaysController < ApplicationController
     application = @essay.application
     @essay.destroy
     respond_to do |format|
-      format.html { redirect_to application_essays_url(application), notice: 'Essay was successfully destroyed.' }
+      format.html { redirect_to application_url(application), notice: 'Essay was successfully removed.' }
       format.json { head :no_content }
     end
   end
