@@ -10,8 +10,10 @@ module FormHelper
   end
 
   def setup_application(application)
-    5.times do
+    10.times do
       application.test_scores.build
+    end
+    5.times do
       application.extracurriculars.build
     end
     (School.all - application.schools).each do |school|
