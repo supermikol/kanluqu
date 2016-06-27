@@ -43,7 +43,7 @@
           <% end %>
             <strong>Applied for:</strong> <%= app.schools.map{|school| school.name}.join(', ') %>
             <br>
-            <em><%= app.note %></em>
+            <em><%= simple_format(app.note) %></em>
           </p>
         </div>
     <% end %>
