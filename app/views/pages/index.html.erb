@@ -41,7 +41,7 @@
            ACT Composite: <%= app.test_scores.find_by(category: "ACT", subject: "Composite").score%>
            <br>
           <% end %>
-            <strong>Applied for:</strong> <%= app.schools.map{|school| school.name}.join(', ') %>
+            <strong>Acceptances:</strong> <%= app.schools.map{|school| school.name}.join(', ') %>
             <br>
             <em><%= simple_format(app.note) %></em>
           </p>

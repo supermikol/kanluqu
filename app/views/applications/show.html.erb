@@ -173,7 +173,7 @@
         <p><%= simple_format(@application.note) %></p>
       </div>
       <div class="sidebar-module">
-        <h5>Schools Applied For</h5>
+        <h5>School Acceptances</h5>
         <ol class="list-unstyled">
           <% @schools.each do |school| %>
           <li><a href="#"><%= link_to "#{school.name}, #{school.country}", school_path(school) %></a></li>
