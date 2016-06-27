@@ -30,10 +30,17 @@
         <div class="main-app">
           <p class="app-header"><%= link_to "#{app.student_name}, #{app.location}, #{app.year}", app %></p>
           <p>
-            Math: <%= app.test_scores.find_by(category: "SAT", subject: "Math") ? app.test_scores.find_by(category: "SAT", subject: "Math").score : "N/A" %>
-            CR: <%= app.test_scores.find_by(category: "SAT", subject: "Critical Reading") ? app.test_scores.find_by(category: "SAT", subject: "Critical Reading").score : "N/A" %>
-            Writing: <%= app.test_scores.find_by(category: "SAT", subject: "Writing") ? app.test_scores.find_by(category: "SAT", subject: "Writing").score : "N/A" %>
+          <% if app.test_scores.find_by(category: "SAT") %>
+            <%= app.test_scores.find_by(category: "SAT", subject: "Math") ? app.test_scores.find_by(category: "SAT", subject: "Math").score.to_s + "M, " : "" %>
+            <%= app.test_scores.find_by(category: "SAT", subject: "Critical Reading") ? app.test_scores.find_by(category: "SAT", subject: "Critical Reading").score.to_s + "CR, " : "" %>
+            <%= app.test_scores.find_by(category: "SAT", subject: "Writing") ? app.test_scores.find_by(category: "SAT", subject: "Writing").score.to_s + "W" : "" %>
             <br>
+          <% end %>
+
+          <% if app.test_scores.find_by(category: "ACT", subject: "Composite") %>
+           ACT Composite: <%= app.test_scores.find_by(category: "ACT", subject: "Composite").score%>
+           <br>
+          <% end %>
             <strong>Applied for:</strong> <%= app.schools.map{|school| school.name}.join(', ') %>
             <br>
             <em><%= app.note %></em>
