@@ -31,12 +31,12 @@
 
             <em><%= simple_format(app.note) %></em>
           </p>
-          <% if current_user.admin? %>
-            <%= link_to 'Add Essay', new_application_essay_path(app), {class: "btn btn-secondary btn-sm", role: "button"} %>
-            <%= link_to 'Edit', edit_application_path(app), {class: "btn btn-secondary btn-sm", role: "button"} %>
-            <%= link_to 'Delete', app, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm", role: "button"} %>
-          <% end %>
         </div>
+          <% if current_user.admin? %>
+            <%= link_to 'Add Essay', new_application_essay_path(app), {class: "btn btn-info-outline btn-sm", type:"button", role: "button"} %>
+            <%= link_to 'Edit', edit_application_path(app), {class: "btn btn-warning-outline btn-sm", type:"button", role: "button"} %>
+            <%= link_to 'Delete', app, {method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger-outline btn-sm", type:"button", role: "button"} %>
+          <% end %>
       <% end %>
     </div>
 
