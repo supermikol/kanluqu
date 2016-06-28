@@ -27,12 +27,12 @@
             <tr><th colspan="2">SAT</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <% @sat_scores.each do |sc| %>
-              <td><%= sc.subject %></td>
-              <td><%= sc.score %></td>
-              <% end %>
-            </tr>
+            <% @sat_scores.each do |sc| %>
+              <tr>
+                <td><%= sc.subject %></td>
+                <td><%= sc.score %></td>
+              </tr>
+            <% end %>
           </tbody>
           <% end %>
           <% if @act_scores.length > 0 %>
