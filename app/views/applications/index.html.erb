@@ -1,5 +1,5 @@
 <p></p>
-<div class="container">
+<div class="container main-index">
   <% if current_user.admin? %>
     <%= link_to 'Add Application', new_application_path, {class: "btn btn-primary btn-sm pull-right", role: "button"} %>
   <% end %>
@@ -11,7 +11,7 @@
         <input>
       </form>
     </div> --> <!-- end app-nav -->
-    <div class="col-md-9">
+    <div>
       <% @applications.each do |app| %>
         <div class="main-app">
           <p class="app-header"><%= link_to "#{app.student_name}, #{app.location}, #{app.year}", app %></p>
