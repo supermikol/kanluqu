@@ -1,27 +1,30 @@
 <p></p>
 <div class="blog-header container">
-  <p>
-    <div class="lead blog-description">
-      <strong><% if @essay.category == "Main Essay" %>
-        Main Essay
-      <% elsif @essay.prompt %>
-        <%=link_to @essay.prompt.school.name, school_path(@essay.prompt.school) %>: <%= @essay.prompt.content %>
-      <% else %>
-        <%= @essay.category %>
+  <div class="lead blog-description essay-header">
+    <% if @essay.category != "Supplement" %>
+      <%= @essay.category %>:
+      <em> <%= @essay.title ? " #{@essay.title}" : "No Prompt" %></em>
+    <% else %>
+      <%= @essay.prompt.content %>
+    <% end %>
+    <div class="name-display">
+      <% if @essay.prompt %>
+        <%=link_to @essay.prompt.school.name, school_path(@essay.prompt.school) %> |
       <% end %>
-      </strong>
       Sentiment: <%= @essay.sentiment %>
+      <br>
+      <%= @essay.application.student_name %>
     </div>
     <% if current_user.admin? %>
-      <%= link_to 'Edit', edit_essay_path(@essay) %> |
-      <%= link_to "Delete", essay_path(@essay), method: :delete, data: {confirm: "Are you sure?"} %>
+      <%= link_to 'Edit', edit_essay_path(@essay), {class: "btn btn-warning-outline btn-sm", type: "button"} %>
+      <%= link_to "Delete", essay_path(@essay), {class: "btn btn-danger-outline btn-sm", type: "button", method: :delete, data: {confirm: "Are you sure?"}} %>
     <% end %>
-  </p>
+
+  </div>
 
   <div class="row">
-    <div class="col-sm-8 blog-main">
-      <div class="blog-post">
-        <em><strong><%= @essay.title %></strong></em>
+    <div class="col-sm-9 blog-main">
+      <div class="blog-post essay-post">
         <p><%= simple_format(@essay.content) %></p>
       </div><!-- /.blog-post -->
 
@@ -30,17 +33,21 @@
       </ul>
     </div><!-- /.blog-main -->
 
-    <div class="col-sm-3 blog-sidebar  form-border">
+    <div class="col-sm-3 blog-sidebar essay-sidebar form-border">
       <div class="sidebar-module sidebar-module-inset">
         <% if @app_essays.length > 1 %>
           <h6 style="text-decoration: underline;">Other essays from this student</h6>
           <% @app_essays.each do |essay| %>
-            <% if essay != @essay && essay.prompt %>
+            <% if essay != @essay %>
+             <% if essay.category == "Supplement" && essay.prompt %>
               <p><%=link_to essay.prompt.content, essay_path(essay) %></p>
               <hr>
-            <% elsif essay != @essay %>
+             <% elsif essay.category != "Supplement" %>
+              <p><%=link_to essay.title + (essay.category ? "(#{essay.category}" : ''), essay_path(essay) %></p>
+             <% else %>
               <p><%=link_to essay.category, essay_path(essay) %></p>
               <hr>
+             <% end %>
             <% end %>
           <% end %>
         <% end %>

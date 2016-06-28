@@ -27,12 +27,12 @@
             <tr><th colspan="2">SAT</th></tr>
           </thead>
           <tbody>
-            <tr>
-              <% @sat_scores.each do |sc| %>
-              <td><%= sc.subject %></td>
-              <td><%= sc.score %></td>
-              <% end %>
-            </tr>
+            <% @sat_scores.each do |sc| %>
+              <tr>
+                <td><%= sc.subject %></td>
+                <td><%= sc.score %></td>
+              </tr>
+            <% end %>
           </tbody>
           <% end %>
           <% if @act_scores.length > 0 %>
@@ -150,7 +150,7 @@
         <% @essays.each do |essay| %>
           <p>
               <% if essay.category == "Main Essay" %>
-                <strong><%=link_to "Main Essay", essay_path(essay) %>  </strong>
+                <strong>Main Essay: <%=link_to essay.title, essay_path(essay) %>  </strong>
               <% elsif essay.prompt %>
                 <strong><%=essay.prompt.school.name%>:</strong> <%=link_to essay.prompt.content, essay_path(essay) %>
               <% else %>
