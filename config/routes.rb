@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'users/edit' => 'pages#edit_users'
   post 'users/create' => 'pages#create_users'
   patch 'users/update' => 'pages#update_users'
+  post 'users/guest_login' => 'pages#new_guest_session'
 
   devise_for :users
   resources :applications do
