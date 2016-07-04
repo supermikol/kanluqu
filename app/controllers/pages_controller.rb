@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :new_guest_session]
   before_action :authenticate_admin, only: [:users_index, :new_users, :create_users, :edit_users, :update_users]
 
   def index
@@ -55,6 +55,10 @@ class PagesController < ApplicationController
   def update_users
   end
 
+  def new_guest_session
+    sign_in(:user, User.find_by(email: "user@test.com"))
+    redirect_to '/applications#index'
+  end
   private
 
 end
