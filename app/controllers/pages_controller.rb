@@ -56,7 +56,7 @@ class PagesController < ApplicationController
   end
 
   def new_guest_session
-    sign_in(:user, User.find_by(email: "user@test.com"))
+    sign_in(:user, User.find_by(email: "guest@guest.com"))
     redirect_to '/applications#index'
   end
   private
