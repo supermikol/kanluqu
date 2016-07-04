@@ -43,7 +43,7 @@
               <p><%=link_to essay.prompt.content, essay_path(essay) %></p>
               <hr>
              <% elsif essay.category != "Supplement" %>
-              <p><%=link_to essay.title + (essay.category ? "(#{essay.category}" : ''), essay_path(essay) %></p>
+              <p><%=link_to (essay.category ? "(#{essay.category}) " : '') + essay.title, essay_path(essay) %></p>
              <% else %>
               <p><%=link_to essay.category, essay_path(essay) %></p>
               <hr>
