@@ -156,8 +156,10 @@
               <% else %>
                 <%=link_to essay.category, essay_path(essay) %>
               <% end %>
-          | Sentiment: <%=essay.sentiment%> |
-          <%= link_to "Delete", essay_path(essay), method: :delete, data: {confirm: "Are you sure?"} %>
+          | Sentiment: <%=essay.sentiment%>
+          <% if current_user.admin? %>
+           | <%= link_to "Delete", essay_path(essay), method: :delete, data: {confirm: "Are you sure?"} %>
+          <% end %>
           </p>
         <% end %>
 
